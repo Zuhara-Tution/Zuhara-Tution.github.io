@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Header */
         .header {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
@@ -60,14 +59,27 @@
             background: rgba(44, 122, 110, 0.2);
         }
 
-        /* Container */
+        .refresh-btn {
+            background: rgba(44, 122, 110, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            border: none;
+            color: #2c7a6e;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(44, 122, 110, 0.2);
+        }
+
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Video Player Section */
         .player-section {
             background: rgba(0, 0, 0, 0.08);
             border-radius: 1.5rem;
@@ -99,15 +111,9 @@
         }
 
         .video-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #1e4a6b;
-        }
-
-        .video-meta {
-            font-size: 0.8rem;
-            color: #5a7a94;
-            margin-top: 0.3rem;
         }
 
         .no-video-selected {
@@ -116,7 +122,6 @@
             color: #5a7a94;
         }
 
-        /* Gallery Header */
         .gallery-header {
             display: flex;
             justify-content: space-between;
@@ -140,7 +145,6 @@
             border-radius: 2rem;
         }
 
-        /* Video Grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -225,8 +229,7 @@
             margin-top: 0.3rem;
         }
 
-        /* Loading & Error States */
-        .loading-state, .error-state, .empty-state {
+        .loading-state, .error-state {
             text-align: center;
             padding: 3rem;
             background: rgba(255, 255, 255, 0.5);
@@ -235,8 +238,8 @@
             grid-column: 1 / -1;
         }
 
-        .loading-state i, .error-state i, .empty-state i {
-            font-size: 2.5rem;
+        .loading-state i, .error-state i {
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
@@ -244,11 +247,10 @@
             color: #2c7a6e;
         }
 
-        .error-state, .empty-state {
+        .error-state {
             color: #d9534f;
         }
 
-        /* Footer */
         .footer {
             margin-top: 2rem;
             text-align: center;
@@ -261,14 +263,8 @@
             .container {
                 padding: 1rem;
             }
-            .header {
-                padding: 0.8rem 1rem;
-            }
             .video-grid {
                 grid-template-columns: 1fr;
-            }
-            .video-title {
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -276,13 +272,15 @@
 <body>
     <div class="header">
         <h1><i class="fas fa-chalkboard-teacher"></i> Zuhara Recorded Classes</h1>
-        <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <div>
+            <button class="refresh-btn" onclick="reloadVideos()"><i class="fas fa-sync-alt"></i> Refresh</button>
+            <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
     </div>
 
     <div class="container">
-        <!-- Video Player Section -->
         <div class="player-section">
-            <div class="video-wrapper" id="videoWrapper">
+            <div class="video-wrapper">
                 <iframe id="videoFrame" src="" allowfullscreen></iframe>
             </div>
             <div class="video-info" id="videoInfo">
@@ -293,18 +291,15 @@
             </div>
         </div>
 
-        <!-- Gallery Section -->
         <div class="gallery-header">
-            <div class="gallery-title">
-                <i class="fas fa-video"></i> Video Library
-            </div>
-            <div class="video-count" id="videoCount">Loading videos...</div>
+            <div class="gallery-title"><i class="fas fa-video"></i> Video Library</div>
+            <div class="video-count" id="videoCount">Loading...</div>
         </div>
 
         <div class="video-grid" id="videoGrid">
             <div class="loading-state">
                 <i class="fas fa-spinner fa-pulse"></i>
-                <p>Loading videos from Google Drive...</p>
+                <p>Loading videos from links.txt...</p>
             </div>
         </div>
 
@@ -314,202 +309,134 @@
     </div>
 
     <script>
-        // ========================================
-        // CHECK AUTHENTICATION
-        // ========================================
+        // Check authentication
         function checkAuthentication() {
             const cookies = document.cookie.split(';');
             for (let cookie of cookies) {
                 const [name, value] = cookie.trim().split('=');
-                if (name === 'zuhara_auth' && value === 'authenticated') {
-                    return true;
-                }
+                if (name === 'zuhara_auth' && value === 'authenticated') return true;
             }
             window.location.href = 'index.html';
             return false;
         }
         checkAuthentication();
 
-        // ========================================
-        // YOUR GOOGLE DRIVE FOLDER ID
-        // ========================================
-        const FOLDER_ID = '1hT4ychRz_7IoWYSha5yVoAKBAWlo_Q7c';
-
-        // ========================================
-        // FALLBACK: MANUAL VIDEO LIST
-        // ADD YOUR VIDEO IDs HERE IF AUTO-LOAD FAILS
-        // HOW TO GET ID: Share video → Copy link → Get ID between /d/ and /view
-        // ========================================
-        const MANUAL_VIDEOS = [
-            // Example: { id: '1ABC123xyz', name: 'Real Numbers - Chapter 1' },
-            // Add your videos below:
-            
-            
-            // Remove the line below after adding your videos
-            { id: '', name: 'Add your video IDs here' }
-        ];
-
-        // ========================================
-        // VIDEO PLAYER & GALLERY CODE
-        // ========================================
-        
         let videos = [];
-        let currentVideoIndex = 0;
+        let currentVideo = 0;
 
-        // Get embed URL from file ID
-        function getEmbedUrl(fileId) {
-            return `https://drive.google.com/file/d/${fileId}/preview`;
+        // Function to load videos from links.txt
+        async function loadVideosFromFile() {
+            const grid = document.getElementById('videoGrid');
+            const countSpan = document.getElementById('videoCount');
+            
+            grid.innerHTML = `<div class="loading-state"><i class="fas fa-spinner fa-pulse"></i><p>Loading videos from links.txt...</p></div>`;
+            
+            try {
+                const response = await fetch('links.txt');
+                if (!response.ok) {
+                    throw new Error('links.txt file not found');
+                }
+                const text = await response.text();
+                
+                // Parse each line: EMBED_URL|Title
+                const lines = text.split('\n');
+                videos = [];
+                
+                for (let line of lines) {
+                    line = line.trim();
+                    if (line === '' || line.startsWith('#')) continue; // Skip empty lines and comments
+                    
+                    const separatorIndex = line.indexOf('|');
+                    if (separatorIndex !== -1) {
+                        const embedUrl = line.substring(0, separatorIndex).trim();
+                        let title = line.substring(separatorIndex + 1).trim();
+                        
+                        // If no title, extract from URL
+                        if (!title) {
+                            title = 'Video ' + (videos.length + 1);
+                        }
+                        
+                        videos.push({
+                            embedUrl: embedUrl,
+                            name: title
+                        });
+                    } else {
+                        // If no separator, treat whole line as URL
+                        videos.push({
+                            embedUrl: line,
+                            name: 'Video ' + (videos.length + 1)
+                        });
+                    }
+                }
+                
+                if (videos.length === 0) {
+                    grid.innerHTML = `<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>No videos found in links.txt</p><p style="font-size:0.8rem;">Format: EMBED_URL|Video Title (one per line)</p></div>`;
+                    countSpan.innerHTML = '0 videos';
+                } else {
+                    renderVideoGrid();
+                    playVideo(0);
+                    countSpan.innerHTML = `${videos.length} ${videos.length === 1 ? 'video' : 'videos'}`;
+                }
+                
+            } catch (error) {
+                console.error('Error loading links.txt:', error);
+                grid.innerHTML = `<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>Could not load links.txt</p><p style="font-size:0.8rem;">Please make sure the file exists in the same folder.</p><p style="font-size:0.8rem; margin-top:0.5rem;">Format: EMBED_URL|Video Title (one per line)</p></div>`;
+                countSpan.innerHTML = 'Error';
+            }
+        }
+
+        // Render video grid
+        function renderVideoGrid() {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+            
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                if (index === currentVideo) card.classList.add('active');
+                card.onclick = () => playVideo(index);
+                
+                card.innerHTML = `
+                    <div class="card-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h4 title="${video.name}">${video.name.length > 35 ? video.name.substring(0, 35) + '...' : video.name}</h4>
+                        <p><i class="fas fa-video"></i> Click to watch</p>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
         }
 
         // Play selected video
         function playVideo(index) {
             if (!videos.length || index < 0 || index >= videos.length) return;
             
-            currentVideoIndex = index;
+            currentVideo = index;
             const video = videos[index];
-            const embedUrl = getEmbedUrl(video.id);
             
-            // Update iframe
-            const frame = document.getElementById('videoFrame');
-            frame.src = embedUrl;
-            
-            // Update video info panel
-            const infoPanel = document.getElementById('videoInfo');
-            infoPanel.innerHTML = `
-                <div class="video-title">
-                    <i class="fas fa-play-circle" style="color: #2c7a6e;"></i> ${video.name}
-                </div>
-                <div class="video-meta">
-                    <i class="fas fa-clock"></i> Click play to start | From Google Drive
-                </div>
+            document.getElementById('videoFrame').src = video.embedUrl;
+            document.getElementById('videoInfo').innerHTML = `
+                <div class="video-title"><i class="fas fa-play-circle" style="color:#2c7a6e;"></i> ${video.name}</div>
             `;
             
-            // Update active state on cards
             document.querySelectorAll('.video-card').forEach((card, i) => {
-                if (i === index) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
-                }
+                card.classList.toggle('active', i === index);
             });
-            
-            // Scroll to player on mobile for better UX
-            if (window.innerWidth < 768) {
-                document.querySelector('.player-section').scrollIntoView({ behavior: 'smooth' });
-            }
         }
 
-        // Create video card element
-        function createVideoCard(video, index) {
-            const card = document.createElement('div');
-            card.className = 'video-card';
-            if (index === currentVideoIndex) card.classList.add('active');
-            card.onclick = () => playVideo(index);
-            
-            // Get short name for display
-            let shortName = video.name;
-            if (shortName.length > 40) {
-                shortName = shortName.substring(0, 40) + '...';
-            }
-            
-            card.innerHTML = `
-                <div class="card-thumbnail">
-                    <i class="fas fa-file-video"></i>
-                    <div class="play-overlay">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <h4 title="${video.name}">${shortName}</h4>
-                    <p><i class="fas fa-play-circle"></i> Click to watch</p>
-                </div>
-            `;
-            
-            return card;
+        // Refresh videos
+        function reloadVideos() {
+            loadVideosFromFile();
         }
 
-        // Render all videos in grid
-        function renderVideoGrid() {
-            const grid = document.getElementById('videoGrid');
-            const countSpan = document.getElementById('videoCount');
-            
-            if (!videos.length) {
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-folder-open"></i>
-                        <p>No videos found in the folder.</p>
-                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Please add videos to your Google Drive folder.</p>
-                    </div>
-                `;
-                countSpan.innerHTML = '0 videos';
-                return;
-            }
-            
-            grid.innerHTML = '';
-            videos.forEach((video, index) => {
-                grid.appendChild(createVideoCard(video, index));
-            });
-            
-            countSpan.innerHTML = `${videos.length} ${videos.length === 1 ? 'video' : 'videos'}`;
-        }
-
-        // Show error message
-        function showError(message) {
-            const grid = document.getElementById('videoGrid');
-            const countSpan = document.getElementById('videoCount');
-            grid.innerHTML = `
-                <div class="error-state">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>${message}</p>
-                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Please contact the center for assistance.</p>
-                </div>
-            `;
-            countSpan.innerHTML = 'Error loading';
-        }
-
-        // Load videos from Google Drive
-        async function loadVideosFromDrive() {
-            // Check if manual videos are provided first
-            if (MANUAL_VIDEOS.length > 0 && MANUAL_VIDEOS[0].id && MANUAL_VIDEOS[0].id !== '') {
-                videos = MANUAL_VIDEOS.filter(v => v.id && v.id !== '');
-                if (videos.length) {
-                    renderVideoGrid();
-                    playVideo(0);
-                    return;
-                }
-            }
-            
-            // Try Google Drive API
-            try {
-                const apiUrl = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents&key=AIzaSyDkZJPP1sYJ_sB4qD-QgysE1sFjYvDxMlU&fields=files(id,name,mimeType)`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                
-                if (data.files && data.files.length > 0) {
-                    videos = data.files
-                        .filter(file => file.mimeType && file.mimeType.startsWith('video/'))
-                        .map(file => ({
-                            id: file.id,
-                            name: file.name.replace(/\.[^/.]+$/, '') // Remove file extension
-                        }));
-                    
-                    if (videos.length > 0) {
-                        renderVideoGrid();
-                        playVideo(0);
-                    } else {
-                        showError('No video files found in the Google Drive folder.');
-                    }
-                } else {
-                    showError('Unable to load videos. Please make sure the folder is shared publicly.');
-                }
-            } catch (error) {
-                console.error('API Error:', error);
-                showError('Could not connect to Google Drive. Please check your internet connection.');
-            }
-        }
-
-        // Start loading videos
-        loadVideosFromDrive();
+        // Load videos on page load
+        loadVideosFromFile();
     </script>
 </body>
 </html>
