@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Zuhara Tuition Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .logo i {
+            font-size: 3rem;
+            color: #2c7a6e;
+        }
+
+        h2 {
+            color: #1e4a6b;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            color: #5a7a94;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e4a6b;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(100, 130, 120, 0.25);
+            border-radius: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #2c7a6e;
+            box-shadow: 0 0 0 3px rgba(44, 122, 110, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2c7a6e, #1e5f55);
+            border: none;
+            border-radius: 1rem;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-message {
+            color: #d9534f;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #5a7a94;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .back-link:hover {
+            color: #2c7a6e;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div class="logo">
+            <i class="fas fa-lock"></i>
+        </div>
+        <h2>Student Portal</h2>
+        <p class="subtitle">Enter your class access code</p>
+        
+        <div class="input-group">
+            <label><i class="fas fa-key"></i> Access Code</label>
+            <input type="password" id="accessCode" class="password-input" placeholder="Enter code provided by center">
+        </div>
+        
+        <button class="btn-submit" onclick="verifyAccess()">
+            <i class="fas fa-unlock-alt"></i> Access Recorded Classes
+        </button>
+        
+        <div class="error-message" id="errorMsg">
+            <i class="fas fa-exclamation-circle"></i> Incorrect code. Please contact Zuhara Tuition Center.
+        </div>
+        
+        <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+
+    <script>
+        // YOU CAN CHANGE THIS PASSWORD
+        const CORRECT_PASSWORD = "zuhara2025";
+        
+        function verifyAccess() {
+            const enteredPassword = document.getElementById('accessCode').value;
+            const errorDiv = document.getElementById('errorMsg');
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // Store that user is authenticated for this session
+                sessionStorage.setItem('classroomAccess', 'granted');
+                window.location.href = 'dashboard.html';
+            } else {
+                errorDiv.style.display = 'block';
+                // Clear input
+                document.getElementById('accessCode').value = '';
+                // Shake animation
+                const input = document.querySelector('.password-input');
+                input.style.transform = 'shake 0.3s ease';
+                setTimeout(() => {
+                    input.style.transform = 'none';
+                }, 300);
+            }
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('accessCode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyAccess();
+            }
+        });
+    </script>
+</body>
+</html>
