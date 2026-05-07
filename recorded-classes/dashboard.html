@@ -64,118 +64,57 @@
             padding: 2rem;
         }
 
-        .player-section {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 1.5rem;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .video-player-container {
-            background: #000;
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-        }
-
-        .video-player-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info-panel {
-            background: rgba(255, 255, 255, 0.7);
+        .video-embed-container {
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(16px);
-            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .current-video-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1e4a6b;
-        }
-
-        .no-video-selected {
-            text-align: center;
-            padding: 1.5rem;
-            color: #5a7a94;
-        }
-
-        .gallery-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .video-embed-container h3 {
             color: #1e4a6b;
             margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1rem;
+        .video-embed-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 1rem;
+            background: #000;
         }
 
-        .video-card {
-            background: rgba(255, 255, 255, 0.65);
+        .folder-embed-container {
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(16px);
-            border-radius: 1rem;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 1.5rem;
+            padding: 1rem;
         }
 
-        .video-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-card.active {
-            border: 2px solid #2c7a6e;
-            background: rgba(44, 122, 110, 0.15);
-        }
-
-        .video-thumbnail {
-            background: linear-gradient(135deg, #1e4a6b, #2c7a6e);
-            padding: 1.2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .video-thumbnail i {
-            font-size: 2rem;
-            color: white;
-            opacity: 0.9;
-        }
-
-        .video-card-info {
-            padding: 0.7rem;
-        }
-
-        .video-card-info h4 {
-            font-size: 0.8rem;
-            font-weight: 600;
+        .folder-embed-container h3 {
             color: #1e4a6b;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
-        .loading, .error-message {
-            text-align: center;
-            padding: 2rem;
-            color: #5a7a94;
-            grid-column: 1 / -1;
-        }
-
-        .error-message {
-            color: #d9534f;
-            background: rgba(217, 83, 79, 0.1);
+        .folder-embed-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
             border-radius: 1rem;
+            background: white;
+        }
+
+        .info-box {
+            background: #e8f0fe;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #1e4a6b;
         }
 
         @media (max-width: 768px) {
@@ -185,8 +124,11 @@
             .header {
                 padding: 0.8rem 1rem;
             }
-            .header h1 {
-                font-size: 1rem;
+            .video-embed-container iframe {
+                height: 250px;
+            }
+            .folder-embed-container iframe {
+                height: 400px;
             }
         }
     </style>
@@ -198,32 +140,27 @@
     </div>
 
     <div class="container">
-        <div class="player-section">
-            <div class="video-player-container">
-                <iframe id="videoFrame" src="" allowfullscreen></iframe>
-            </div>
-            <div class="video-info-panel" id="videoInfoPanel">
-                <div class="no-video-selected">
-                    <i class="fas fa-play-circle" style="font-size: 1.8rem; opacity: 0.5;"></i>
-                    <p style="margin-top: 0.3rem; font-size: 0.85rem;">Select a video from below</p>
-                </div>
-            </div>
+        <div class="info-box">
+            <i class="fas fa-info-circle"></i> Click any video below to watch. All videos are from our Google Drive library.
         </div>
 
-        <div class="gallery-title">
-            <i class="fas fa-video"></i> All Recorded Classes
+        <!-- Option 1: Direct Folder View - Shows all videos as thumbnails -->
+        <div class="folder-embed-container">
+            <h3><i class="fas fa-folder-open"></i> All Class Videos</h3>
+            <iframe src="https://drive.google.com/embeddedfolderview?id=1hT4ychRz_7IoWYSha5yVoAKBAWlo_Q7c#grid" allowfullscreen></iframe>
         </div>
-        <div class="video-grid" id="videoGrid">
-            <div class="loading">
-                <i class="fas fa-spinner fa-pulse"></i> Loading videos...
-            </div>
+
+        <!-- Option 2: Individual Video Player (Optional - Uncomment to add specific videos) -->
+        <!-- 
+        <div class="video-embed-container">
+            <h3><i class="fas fa-play-circle"></i> Featured: Real Numbers - Full Chapter</h3>
+            <iframe src="https://drive.google.com/file/d/YOUR_FILE_ID/preview" allowfullscreen></iframe>
         </div>
+        -->
     </div>
 
     <script>
-        // ========================================
-        // CHECK AUTHENTICATION VIA COOKIE
-        // ========================================
+        // Check authentication via cookie
         function checkAuthentication() {
             const cookies = document.cookie.split(';');
             for (let cookie of cookies) {
@@ -236,122 +173,7 @@
             return false;
         }
 
-        // Run authentication check immediately
-        if (!checkAuthentication()) {
-            throw new Error('Not authenticated');
-        }
-
-        // ========================================
-        // YOUR GOOGLE DRIVE FOLDER ID
-        // ========================================
-        const FOLDER_ID = '1hT4ychRz_7IoWYSha5yVoAKBAWlo_Q7c';
-
-        // ========================================
-        // MANUAL VIDEO LIST (USE THIS IF AUTO-LOAD FAILS)
-        // ========================================
-        const MANUAL_VIDEOS = [
-            // Add your videos here like this:
-            // { id: 'YOUR_FILE_ID_HERE', name: 'Video Title Here' },
-        ];
-
-        // ========================================
-        // DO NOT EDIT BELOW THIS LINE
-        // ========================================
-        
-        let videos = [];
-        let currentVideoIndex = 0;
-
-        function getEmbedUrl(fileId) {
-            return `https://drive.google.com/file/d/${fileId}/preview`;
-        }
-
-        function renderVideoGrid() {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = '';
-            
-            if (videos.length === 0) {
-                grid.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-triangle"></i> No videos found. Please contact the center for access.</div>';
-                return;
-            }
-            
-            videos.forEach((video, index) => {
-                const card = document.createElement('div');
-                card.className = 'video-card';
-                if (index === currentVideoIndex) card.classList.add('active');
-                card.onclick = () => playVideo(index);
-                
-                card.innerHTML = `
-                    <div class="video-thumbnail">
-                        <i class="fas fa-file-video"></i>
-                    </div>
-                    <div class="video-card-info">
-                        <h4 title="${video.name}">${video.name.length > 35 ? video.name.substring(0, 35) + '...' : video.name}</h4>
-                    </div>
-                `;
-                
-                grid.appendChild(card);
-            });
-        }
-
-        function playVideo(index) {
-            if (index < 0 || index >= videos.length) return;
-            
-            currentVideoIndex = index;
-            const video = videos[index];
-            const embedUrl = getEmbedUrl(video.id);
-            
-            document.getElementById('videoFrame').src = embedUrl;
-            document.getElementById('videoInfoPanel').innerHTML = `
-                <div class="current-video-title"><i class="fas fa-play-circle"></i> ${video.name}</div>
-            `;
-            
-            document.querySelectorAll('.video-card').forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
-        }
-
-        function showError(message) {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-triangle"></i> ${message}<br><br>Please contact the center for assistance.</div>`;
-        }
-
-        async function loadVideos() {
-            if (MANUAL_VIDEOS.length > 0 && MANUAL_VIDEOS[0].id && MANUAL_VIDEOS[0].id !== 'YOUR_FILE_ID_HERE') {
-                videos = MANUAL_VIDEOS;
-                renderVideoGrid();
-                if (videos.length > 0) playVideo(0);
-                return;
-            }
-            
-            try {
-                const apiUrl = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents&key=AIzaSyDkZJPP1sYJ_sB4qD-QgysE1sFjYvDxMlU&fields=files(id,name,mimeType)`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                
-                if (data.files && data.files.length > 0) {
-                    videos = data.files
-                        .filter(file => file.mimeType && file.mimeType.startsWith('video/'))
-                        .map(file => ({
-                            id: file.id,
-                            name: file.name.replace(/\.[^/.]+$/, '')
-                        }));
-                    
-                    if (videos.length > 0) {
-                        renderVideoGrid();
-                        playVideo(0);
-                    } else {
-                        showError('No video files found in the folder.');
-                    }
-                } else {
-                    showError('Unable to load videos automatically. Please use manual method.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Could not connect to Google Drive. Please use manual video list.');
-            }
-        }
-
-        loadVideos();
+        checkAuthentication();
     </script>
 </body>
 </html>
