@@ -28,10 +28,14 @@
         <p>Please wait while you are redirected.</p>
     </div>
     <script>
-        // Delete the authentication cookie
+        // Clear STUDENT cookie
         document.cookie = 'zuhara_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        // Redirect to login page
-        window.location.href = 'index.html';
+        
+        // Clear ADMIN session storage (NO COOKIE for admin)
+        sessionStorage.removeItem('adminAuthenticated');
+        
+        // Redirect to student login page
+        window.location.href = 'student-login.html';
     </script>
 </body>
 </html>
