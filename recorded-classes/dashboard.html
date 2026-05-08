@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Zuhara Tuition Center</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
@@ -21,7 +24,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.mi
 :root{
 
     --bg:#07111f;
-    --card:#0d1b2c;
     --glass:rgba(255,255,255,0.08);
     --border:rgba(255,255,255,0.08);
 
@@ -30,7 +32,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.mi
 
     --text:#ffffff;
     --muted:#8fa9c7;
-
 }
 
 body{
@@ -42,15 +43,12 @@ body{
     radial-gradient(circle at bottom right,#0f5bd7 0%,transparent 35%),
     linear-gradient(135deg,#06101d,#081423,#0a1628);
 
-    color:var(--text);
+    color:white;
 
     min-height:100vh;
 
     overflow-x:hidden;
-
 }
-
-/* GLOW BACKGROUND */
 
 body::before{
 
@@ -61,13 +59,17 @@ body::before{
     inset:0;
 
     background:
-    radial-gradient(circle at 20% 20%,rgba(59,164,255,0.15),transparent 20%),
-    radial-gradient(circle at 80% 70%,rgba(59,164,255,0.12),transparent 25%);
+    radial-gradient(circle at 20% 20%,
+    rgba(59,164,255,0.15),
+    transparent 20%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(59,164,255,0.12),
+    transparent 25%);
 
     z-index:-1;
 
     filter:blur(80px);
-
 }
 
 /* HEADER */
@@ -98,7 +100,6 @@ body::before{
     border-bottom:1px solid rgba(255,255,255,0.06);
 
     z-index:999;
-
 }
 
 .logo{
@@ -112,7 +113,6 @@ body::before{
     font-size:1.2rem;
 
     font-weight:700;
-
 }
 
 .logo-icon{
@@ -133,13 +133,6 @@ body::before{
     box-shadow:
     0 0 20px rgba(59,164,255,0.5),
     0 0 40px rgba(59,164,255,0.2);
-
-}
-
-.logo-icon i{
-
-    font-size:1.2rem;
-
 }
 
 .search-box{
@@ -151,7 +144,6 @@ body::before{
     margin:0 30px;
 
     position:relative;
-
 }
 
 .search-box input{
@@ -175,7 +167,6 @@ body::before{
     backdrop-filter:blur(10px);
 
     border:1px solid rgba(255,255,255,0.06);
-
 }
 
 .search-box input:focus{
@@ -183,7 +174,6 @@ body::before{
     border:1px solid rgba(59,164,255,0.5);
 
     box-shadow:0 0 20px rgba(59,164,255,0.3);
-
 }
 
 .search-box i{
@@ -197,7 +187,6 @@ body::before{
     transform:translateY(-50%);
 
     color:#8fa9c7;
-
 }
 
 .logout-btn{
@@ -217,7 +206,6 @@ body::before{
     border:1px solid rgba(255,255,255,0.05);
 
     transition:0.25s;
-
 }
 
 .logout-btn:hover{
@@ -225,7 +213,6 @@ body::before{
     background:rgba(59,164,255,0.15);
 
     box-shadow:0 0 20px rgba(59,164,255,0.25);
-
 }
 
 /* LAYOUT */
@@ -235,7 +222,6 @@ body::before{
     display:flex;
 
     margin-top:75px;
-
 }
 
 /* SIDEBAR */
@@ -260,7 +246,6 @@ body::before{
     background:rgba(255,255,255,0.04);
 
     border-right:1px solid rgba(255,255,255,0.06);
-
 }
 
 .sidebar-title{
@@ -276,7 +261,6 @@ body::before{
     text-transform:uppercase;
 
     letter-spacing:1px;
-
 }
 
 .subject-btn{
@@ -302,13 +286,11 @@ body::before{
     transition:0.25s;
 
     font-size:0.95rem;
-
 }
 
 .subject-btn:hover{
 
     background:rgba(255,255,255,0.07);
-
 }
 
 .subject-btn.active{
@@ -317,7 +299,6 @@ body::before{
 
     box-shadow:
     0 0 25px rgba(59,164,255,0.35);
-
 }
 
 /* CONTENT */
@@ -329,7 +310,6 @@ body::before{
     width:calc(100% - 260px);
 
     padding:30px;
-
 }
 
 /* SECTION */
@@ -341,7 +321,6 @@ body::before{
     margin-bottom:25px;
 
     font-weight:700;
-
 }
 
 /* VIDEO GRID */
@@ -354,23 +333,20 @@ body::before{
     repeat(auto-fill,minmax(320px,1fr));
 
     gap:26px;
-
 }
 
-/* CARD */
+/* VIDEO CARD */
 
 .video-card{
 
     cursor:pointer;
 
     transition:0.25s;
-
 }
 
 .video-card:hover{
 
     transform:translateY(-5px);
-
 }
 
 .thumbnail{
@@ -387,13 +363,10 @@ body::before{
 
     background:#111;
 
-    backdrop-filter:blur(20px);
-
     border:1px solid rgba(255,255,255,0.05);
 
     box-shadow:
     0 10px 40px rgba(0,0,0,0.25);
-
 }
 
 .thumbnail iframe{
@@ -404,7 +377,6 @@ body::before{
     border:none;
 
     pointer-events:none;
-
 }
 
 .thumbnail::after{
@@ -417,9 +389,8 @@ body::before{
 
     background:linear-gradient(
     to top,
-    rgba(0,0,0,0.4),
+    rgba(0,0,0,0.45),
     transparent);
-
 }
 
 .play-btn{
@@ -451,25 +422,21 @@ body::before{
     opacity:0;
 
     transition:0.25s;
-
 }
 
 .play-btn i{
 
     font-size:1.5rem;
-
 }
 
 .video-card:hover .play-btn{
 
     opacity:1;
-
 }
 
 .video-info{
 
     padding:14px 8px;
-
 }
 
 .video-title{
@@ -481,7 +448,6 @@ body::before{
     line-height:1.5;
 
     margin-bottom:8px;
-
 }
 
 .video-category{
@@ -489,15 +455,13 @@ body::before{
     font-size:0.85rem;
 
     color:#8fa9c7;
-
 }
 
-/* PLAYER PAGE */
+/* PLAYER */
 
 .player-page{
 
     display:none;
-
 }
 
 .back-btn{
@@ -519,16 +483,16 @@ body::before{
     backdrop-filter:blur(12px);
 
     transition:0.25s;
-
 }
 
 .back-btn:hover{
 
     background:rgba(59,164,255,0.15);
-
 }
 
 .video-player{
+
+    position:relative;
 
     width:100%;
 
@@ -542,7 +506,6 @@ body::before{
 
     box-shadow:
     0 0 35px rgba(59,164,255,0.18);
-
 }
 
 .video-player iframe{
@@ -551,7 +514,43 @@ body::before{
     height:100%;
 
     border:none;
+}
 
+/* PROTECTION LAYER */
+
+.video-protection{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:60px;
+
+    z-index:10;
+}
+
+.video-watermark{
+
+    position:absolute;
+
+    bottom:20px;
+    right:20px;
+
+    z-index:20;
+
+    background:rgba(0,0,0,0.45);
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:14px;
+
+    font-size:0.8rem;
+
+    backdrop-filter:blur(10px);
 }
 
 .video-details{
@@ -567,7 +566,6 @@ body::before{
     backdrop-filter:blur(20px);
 
     border:1px solid rgba(255,255,255,0.06);
-
 }
 
 .video-details h2{
@@ -575,13 +573,11 @@ body::before{
     font-size:1.5rem;
 
     margin-bottom:10px;
-
 }
 
 .video-meta{
 
     color:#8fa9c7;
-
 }
 
 /* SCROLLBAR */
@@ -589,7 +585,6 @@ body::before{
 ::-webkit-scrollbar{
 
     width:8px;
-
 }
 
 ::-webkit-scrollbar-thumb{
@@ -597,7 +592,6 @@ body::before{
     background:#2456a7;
 
     border-radius:20px;
-
 }
 
 /* MOBILE */
@@ -607,7 +601,6 @@ body::before{
     .sidebar{
 
         width:85px;
-
     }
 
     .subject-btn{
@@ -617,13 +610,11 @@ body::before{
         text-align:center;
 
         padding:14px 6px;
-
     }
 
     .sidebar-title{
 
         display:none;
-
     }
 
     .content{
@@ -631,9 +622,7 @@ body::before{
         margin-left:85px;
 
         width:calc(100% - 85px);
-
     }
-
 }
 
 @media(max-width:720px){
@@ -647,19 +636,16 @@ body::before{
         padding:14px;
 
         gap:14px;
-
     }
 
     .layout{
 
         margin-top:130px;
-
     }
 
     .sidebar{
 
         top:130px;
-
     }
 
     .search-box{
@@ -671,15 +657,12 @@ body::before{
         max-width:none;
 
         margin:0;
-
     }
 
     .video-grid{
 
         grid-template-columns:1fr;
-
     }
-
 }
 
 </style>
@@ -768,11 +751,19 @@ body::before{
 
             <div class="video-player">
 
+                <div class="video-protection"></div>
+
                 <iframe
                 id="videoFrame"
                 allowfullscreen
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; encrypted-media"
+                sandbox="allow-scripts allow-same-origin allow-presentation">
                 </iframe>
+
+                <div class="video-watermark">
+                    Zuhara Tuition Center
+                </div>
 
             </div>
 
@@ -809,12 +800,10 @@ function checkAuthentication(){
         && value === 'authenticated'){
             return true;
         }
-
     }
 
     window.location.href =
     'index.html';
-
 }
 
 checkAuthentication();
@@ -825,7 +814,7 @@ let videos = [];
 
 let currentCategory = 'All';
 
-// LOAD
+// LOAD VIDEOS
 
 async function loadVideos(){
 
@@ -863,7 +852,7 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            // CONVERT URL
+            // Convert watch URL
 
             if(url.includes('watch?v=')){
 
@@ -873,8 +862,9 @@ async function loadVideos(){
 
                 url =
                 `https://www.youtube.com/embed/${id}`;
-
             }
+
+            // Convert youtu.be
 
             if(url.includes('youtu.be/')){
 
@@ -883,7 +873,6 @@ async function loadVideos(){
 
                 url =
                 `https://www.youtube.com/embed/${id}`;
-
             }
 
             videos.push({
@@ -905,9 +894,7 @@ async function loadVideos(){
         .getElementById('videoGrid')
         .innerHTML =
         '<h2>Could not load videos</h2>';
-
     }
-
 }
 
 // SUBJECTS
@@ -921,7 +908,6 @@ function renderSubjects(){
         ...new Set(
             videos.map(v=>v.category)
         )
-
     ];
 
     const container =
@@ -942,7 +928,6 @@ function renderSubjects(){
         if(subject === currentCategory){
 
             btn.classList.add('active');
-
         }
 
         btn.innerHTML = `
@@ -964,13 +949,10 @@ function renderSubjects(){
             btn.classList.add('active');
 
             renderVideos();
-
         };
 
         container.appendChild(btn);
-
     });
-
 }
 
 // VIDEOS
@@ -1008,7 +990,6 @@ function renderVideos(){
 
         return matchCategory
         && matchSearch;
-
     });
 
     filtered.forEach(video=>{
@@ -1048,13 +1029,10 @@ function renderVideos(){
                 </div>
 
             </div>
-
         `;
 
         grid.appendChild(card);
-
     });
-
 }
 
 // PLAY VIDEO
@@ -1069,10 +1047,29 @@ function playVideo(video){
     .getElementById('playerPage')
     .style.display = 'block';
 
+    const secureUrl =
+
+    video.url +
+
+    '?autoplay=1' +
+
+    '&modestbranding=1' +
+
+    '&rel=0' +
+
+    '&controls=1' +
+
+    '&disablekb=1' +
+
+    '&fs=0' +
+
+    '&iv_load_policy=3' +
+
+    '&playsinline=1';
+
     document
     .getElementById('videoFrame')
-    .src =
-    video.url + '?autoplay=1';
+    .src = secureUrl;
 
     document
     .getElementById('videoTitle')
@@ -1088,7 +1085,6 @@ function playVideo(video){
         top:0,
         behavior:'smooth'
     });
-
 }
 
 // BACK
@@ -1106,7 +1102,6 @@ function goBack(){
     document
     .getElementById('videoFrame')
     .src = '';
-
 }
 
 // SEARCH
@@ -1117,6 +1112,44 @@ document
 'input',
 renderVideos
 );
+
+// Disable Right Click
+
+document.addEventListener(
+'contextmenu',
+e=>{
+    e.preventDefault();
+});
+
+// Disable shortcuts
+
+document.addEventListener(
+'keydown',
+e=>{
+
+    // F12
+
+    if(e.key === 'F12'){
+        e.preventDefault();
+    }
+
+    // Ctrl+U
+
+    if(e.ctrlKey &&
+    e.key.toLowerCase() === 'u'){
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I
+
+    if(
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === 'i'
+    ){
+        e.preventDefault();
+    }
+});
 
 // START
 
