@@ -2,578 +2,1129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Zuhara Tuition Center | CBSE & State Syllabus | Eranjipalam, Kerala</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuhara Tuition Center | CBSE & State Syllabus</title>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
-            min-height: 100vh;
-            color: #1a2c3e;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Premium glass effect - light theme */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
-            transition: all 0.3s ease;
-        }
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: rgba(100, 150, 130, 0.3);
-        }
+<style>
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1.8rem 2rem 3rem;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0.8rem 1.5rem;
-            margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(20px);
-            border-radius: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
+body{
 
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e4a6b, #2c7a6e);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+    font-family:'Inter',sans-serif;
 
-        .logo p {
-            font-size: 0.75rem;
-            color: #5a7a94;
-        }
+    background:
+    linear-gradient(135deg,#eef4ff,#f7fbff);
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            font-weight: 500;
-        }
+    color:#163047;
 
-        .nav-links a {
-            color: #2c4c6c;
-            text-decoration: none;
-            transition: 0.2s;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.5rem 0;
-        }
+    overflow-x:hidden;
+}
 
-        .nav-links a:hover {
-            color: #2c7a6e;
-        }
+/* BACKGROUND GLOW */
 
-        /* Hero */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-            justify-content: space-between;
-            margin: 1.5rem 0 3rem;
-        }
+body::before{
 
-        .hero-content {
-            flex: 1.2;
-        }
+    content:'';
 
-        .hero-badge {
-            background: rgba(44, 122, 110, 0.12);
-            backdrop-filter: blur(8px);
-            display: inline-block;
-            padding: 0.4rem 1.2rem;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #2c7a6e;
-            margin-bottom: 1.2rem;
-            border: 1px solid rgba(44, 122, 110, 0.2);
-        }
+    position:fixed;
 
-        .hero-content h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: #0f2b3b;
-        }
+    inset:0;
 
-        .hero-highlight {
-            background: linear-gradient(120deg, #2c7a6e20, #6ab0a620);
-            padding: 0 0.3rem;
-            border-radius: 12px;
-        }
+    background:
 
-        .hero-desc {
-            font-size: 1.05rem;
-            margin: 1.2rem 0;
-            color: #3a5a74;
-            max-width: 550px;
-            line-height: 1.6;
-        }
+    radial-gradient(circle at top left,
+    rgba(44,122,110,0.12),
+    transparent 25%),
 
-        .syllabus-tags {
-            display: flex;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
+    radial-gradient(circle at bottom right,
+    rgba(59,164,255,0.15),
+    transparent 25%);
 
-        .tag {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            padding: 0.5rem 1.3rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            border: 1px solid rgba(100, 130, 120, 0.2);
-            color: #1e5a6b;
-        }
+    z-index:-1;
 
-        .hero-visual {
-            flex: 0.9;
-            text-align: center;
-        }
+    filter:blur(80px);
+}
 
-        .glass-illustration {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 2rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-        }
+/* CONTAINER */
 
-        .glass-illustration i {
-            font-size: 4rem;
-            color: #2c7a6e;
-            margin: 0 0.3rem;
-        }
+.container{
 
-        /* Section titles */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 2rem 0 0.5rem;
-            text-align: center;
-            color: #1a4055;
-        }
-        .section-sub {
-            text-align: center;
-            color: #5a7a94;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
+    width:min(1300px,92%);
 
-        /* Features grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
+    margin:auto;
+}
 
-        .feature-item {
-            text-align: center;
-            padding: 1.8rem 1.2rem;
-        }
+/* NAVBAR */
 
-        .feature-icon {
-            font-size: 2rem;
-            background: rgba(44, 122, 110, 0.1);
-            width: 75px;
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 28px;
-            margin: 0 auto 1.2rem auto;
-            color: #2c7a6e;
-        }
+.navbar{
 
-        /* Mode badges */
-        .offline-online {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .mode-badge {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(12px);
-            padding: 0.7rem 1.8rem;
-            border-radius: 60px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            color: #1e5a6b;
-        }
-        .mode-badge i {
-            margin-right: 8px;
-            color: #2c7a6e;
-        }
+    margin-top:20px;
 
-        .address-note {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(12px);
-            border-radius: 3rem;
-            padding: 0.8rem 1.8rem;
-            text-align: center;
-            font-size: 0.9rem;
-            display: inline-block;
-            width: auto;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
+    display:flex;
 
-        /* Premium glass form */
-        .form-wrapper {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 2.2rem 2rem 2.5rem;
-            margin: 3rem 0 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-        }
+    align-items:center;
 
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
+    justify-content:space-between;
 
-        .input-group {
-            flex: 1;
-            min-width: 200px;
-        }
+    flex-wrap:wrap;
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #1e4a6b;
-            font-size: 0.85rem;
-        }
+    padding:18px 26px;
 
-        input, select, textarea {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(100, 130, 120, 0.25);
-            border-radius: 1.2rem;
-            color: #1f3b4c;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
+    border-radius:28px;
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #2c7a6e;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(44, 122, 110, 0.15);
-        }
+    background:rgba(255,255,255,0.55);
 
-        .radio-group {
-            display: flex;
-            gap: 1.8rem;
-            align-items: center;
-            flex-wrap: wrap;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 0.7rem 1.2rem;
-            border-radius: 2rem;
-        }
+    backdrop-filter:blur(20px);
 
-        .radio-group div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    border:1px solid rgba(255,255,255,0.7);
 
-        .btn-submit {
-            background: linear-gradient(135deg, #2c7a6e, #1e5f55);
-            border: none;
-            padding: 1rem 2rem;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 3rem;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-        }
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.05);
+}
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, #1e6f5c, #165a4a);
-        }
+.logo h1{
 
-        .form-status {
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: 500;
-        }
+    font-size:1.8rem;
 
-        footer {
-            text-align: center;
-            padding: 2rem 0 1rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            font-size: 0.8rem;
-            color: #5e7e9c;
-        }
+    font-weight:800;
 
-        @media (max-width: 780px) {
-            .container {
-                padding: 1.2rem;
-            }
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links {
-                gap: 1.2rem;
-            }
-            .glass-illustration i {
-                font-size: 2.5rem;
-            }
-        }
+    background:
+    linear-gradient(135deg,#1e4a6b,#2c7a6e);
 
-        .small-note {
-            font-size: 0.75rem;
-            color: #5f7d9c;
-            text-align: center;
-            margin-top: 0.8rem;
-        }
+    -webkit-background-clip:text;
 
-        .center-text {
-            text-align: center;
-        }
-    </style>
+    color:transparent;
+}
+
+.logo p{
+
+    font-size:0.8rem;
+
+    color:#5c7d98;
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:28px;
+
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#234765;
+
+    font-weight:600;
+
+    transition:0.25s;
+}
+
+.nav-links a:hover{
+
+    color:#2c7a6e;
+}
+
+/* HERO */
+
+.hero{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:40px;
+
+    padding:70px 0;
+}
+
+.hero-content{
+
+    flex:1;
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(44,122,110,0.12);
+
+    color:#2c7a6e;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+.hero h2{
+
+    font-size:3.5rem;
+
+    line-height:1.15;
+
+    margin-bottom:20px;
+
+    font-weight:800;
+}
+
+.hero-highlight{
+
+    background:
+    linear-gradient(120deg,
+    rgba(44,122,110,0.15),
+    rgba(59,164,255,0.15));
+
+    padding:0 8px;
+
+    border-radius:12px;
+}
+
+.hero-desc{
+
+    font-size:1.05rem;
+
+    color:#4e6e88;
+
+    max-width:620px;
+
+    line-height:1.7;
+}
+
+.tags{
+
+    margin-top:30px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+}
+
+.tag{
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.65);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    font-size:0.9rem;
+
+    font-weight:500;
+}
+
+/* HERO VISUAL */
+
+.hero-visual{
+
+    flex:0.9;
+}
+
+.visual-card{
+
+    padding:50px;
+
+    border-radius:36px;
+
+    background:rgba(255,255,255,0.6);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.06);
+
+    text-align:center;
+}
+
+.visual-card i{
+
+    font-size:4rem;
+
+    margin:0 10px;
+
+    color:#2c7a6e;
+}
+
+/* SECTION */
+
+.section-title{
+
+    text-align:center;
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.section-sub{
+
+    text-align:center;
+
+    color:#5d7b94;
+
+    margin-bottom:50px;
+}
+
+/* FEATURES */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:28px;
+
+    margin-bottom:80px;
+}
+
+.feature-card{
+
+    padding:34px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,0.6);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    transition:0.3s;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.08);
+}
+
+.feature-icon{
+
+    width:80px;
+    height:80px;
+
+    border-radius:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+
+    background:rgba(44,122,110,0.12);
+
+    color:#2c7a6e;
+
+    font-size:2rem;
+}
+
+.feature-card h3{
+
+    margin-bottom:14px;
+}
+
+/* MODES */
+
+.modes{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-bottom:70px;
+}
+
+.mode{
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.6);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    font-weight:600;
+}
+
+/* FORM */
+
+.form-section{
+
+    margin-bottom:80px;
+}
+
+.form-wrapper{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:45px;
+
+    border-radius:36px;
+
+    background:rgba(255,255,255,0.62);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.05);
+}
+
+.form-wrapper h2{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+    font-size:2rem;
+}
+
+.form-wrapper p{
+
+    text-align:center;
+
+    color:#5c7b95;
+
+    margin-bottom:35px;
+}
+
+.form-row{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+}
+
+.input-group{
+
+    flex:1;
+
+    min-width:240px;
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    font-size:0.9rem;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    background:rgba(255,255,255,0.8);
+
+    font-family:'Inter',sans-serif;
+
+    font-size:0.95rem;
+
+    transition:0.25s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:#2c7a6e;
+
+    box-shadow:
+    0 0 0 4px rgba(44,122,110,0.12);
+}
+
+.radio-group{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.55);
+}
+
+.btn-submit{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(135deg,#2c7a6e,#1f6458);
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-submit:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,0.1);
+}
+
+.form-status{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+
+    padding:50px 0;
+
+    text-align:center;
+
+    color:#6887a0;
+
+    font-size:0.9rem;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .hero h2{
+
+        font-size:2.3rem;
+    }
+
+    .hero{
+
+        padding:50px 0;
+    }
+
+    .visual-card{
+
+        padding:35px;
+    }
+}
+
+@media(max-width:650px){
+
+    .navbar{
+
+        gap:20px;
+
+        justify-content:center;
+    }
+
+    .hero{
+
+        text-align:center;
+    }
+
+    .tags{
+
+        justify-content:center;
+    }
+
+    .hero-desc{
+
+        margin:auto;
+    }
+}
+
+</style>
 </head>
+
 <body>
+
 <div class="container">
+
+    <!-- NAVBAR -->
+
     <nav class="navbar">
+
         <div class="logo">
+
             <h1>📘 Zuhara Tuition Center</h1>
+
             <p>Eranjipalam · Kozhikode</p>
+
         </div>
+
         <div class="nav-links">
+
             <a href="#">Home</a>
-            <a href="#admission-form">Admission</a>
-            <a href="#syllabus">Approach</a>
-            <a href="#mode">Classes</a>
+
+            <a href="#features">Approach</a>
+
+            <a href="#admission">Admission</a>
+
         </div>
+
     </nav>
 
-    <div class="hero">
+    <!-- HERO -->
+
+    <section class="hero">
+
         <div class="hero-content">
-            <div class="hero-badge">📍 Near Eranjipalam · Since 2014</div>
-            <h2>Academic guidance for <span class="hero-highlight">CBSE & State syllabus</span><br>in Kerala</h2>
-            <div class="syllabus-tags">
-                <span class="tag"><i class="fas fa-book-open"></i> CBSE Syllabus</span>
-                <span class="tag"><i class="fas fa-chalkboard-user"></i> State Syllabus</span>
-                <span class="tag"><i class="fas fa-laptop-house"></i> Offline & Online</span>
+
+            <div class="hero-badge">
+
+                📍 Near Eranjipalam · Since 2014
+
             </div>
-            <p class="hero-desc">Individual attention, structured learning, and regular assessments. Located near Eranjipalam, Kozhikode. Both classroom and live online sessions available for students from Class 5 to 12.</p>
+
+            <h2>
+
+                Academic guidance for
+
+                <span class="hero-highlight">
+
+                    CBSE & State syllabus
+
+                </span>
+
+            </h2>
+
+            <p class="hero-desc">
+
+                Structured learning, concept clarity,
+                regular assessments, offline classroom,
+                and live online classes for students
+                from Class 5 to 12.
+
+            </p>
+
+            <div class="tags">
+
+                <div class="tag">
+                    📘 CBSE
+                </div>
+
+                <div class="tag">
+                    🏫 State Syllabus
+                </div>
+
+                <div class="tag">
+                    💻 Online + Offline
+                </div>
+
+            </div>
+
         </div>
+
         <div class="hero-visual">
-            <div class="glass-illustration">
+
+            <div class="visual-card">
+
                 <i class="fas fa-graduation-cap"></i>
+
                 <i class="fas fa-chalkboard"></i>
+
                 <i class="fas fa-laptop-code"></i>
-                <p style="margin-top: 16px; font-weight: 500;">Choose your learning mode</p>
-                <div style="font-size: 0.85rem; opacity: 0.8;">offline · live online · recorded backup</div>
+
+                <p style="margin-top:25px;font-weight:600;">
+                    Offline · Live Online · Recorded Backup
+                </p>
+
             </div>
+
         </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section id="features">
+
+        <h2 class="section-title">
+
+            Learning Approach
+
+        </h2>
+
+        <p class="section-sub">
+
+            Clear structure · regular feedback · concept clarity
+
+        </p>
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-layer-group"></i>
+
+                </div>
+
+                <h3>Syllabus Coverage</h3>
+
+                <p>
+
+                    Complete CBSE and State syllabus
+                    for classes 5 to 12.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-chalkboard-user"></i>
+
+                </div>
+
+                <h3>Online & Offline</h3>
+
+                <p>
+
+                    Classroom sessions and live online
+                    interactive batches.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-clipboard-list"></i>
+
+                </div>
+
+                <h3>Assessments</h3>
+
+                <p>
+
+                    Weekly tests, doubt clearing,
+                    and parent progress updates.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MODES -->
+
+    <div class="modes">
+
+        <div class="mode">
+            🏫 Offline Classroom
+        </div>
+
+        <div class="mode">
+            💻 Live Online Classes
+        </div>
+
+        <div class="mode">
+            📱 Recorded Access
+        </div>
+
     </div>
 
-    <!-- Approach section -->
-    <div id="syllabus">
-        <h2 class="section-title">Learning approach</h2>
-        <p class="section-sub">Clear structure · regular feedback · concept clarity</p>
-        <div class="features-grid">
-            <div class="glass-card feature-item">
-                <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-                <h3>Syllabus coverage</h3>
-                <p>Complete CBSE and State syllabus for classes 5 to 12. Focus on core concepts and exam patterns.</p>
-            </div>
-            <div class="glass-card feature-item">
-                <div class="feature-icon"><i class="fas fa-chalkboard-user"></i></div>
-                <h3>Offline & online batches</h3>
-                <p>Classroom sessions at Eranjipalam centre and live interactive online classes for remote learners.</p>
-            </div>
-            <div class="glass-card feature-item">
-                <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
-                <h3>Regular assessments</h3>
-                <p>Weekly tests, doubt-clearing sessions, and progress reports shared with parents.</p>
-            </div>
-        </div>
-    </div>
+    <!-- FORM -->
 
-    <!-- Class modes -->
-    <div id="mode" class="center-text" style="margin: 1rem 0 0.5rem;">
-        <div class="offline-online">
-            <div class="mode-badge"><i class="fas fa-building"></i> Offline classroom · Eranjipalam</div>
-            <div class="mode-badge"><i class="fas fa-wifi"></i> Live online classes</div>
-            <div class="mode-badge"><i class="fas fa-mobile-alt"></i> Recorded session access</div>
-        </div>
-        <div class="address-note glass-card">
-            <i class="fas fa-map-marker-alt"></i> Near Eranjipalam Junction, Kozhikode · Kerala
-        </div>
-    </div>
+    <section
+    class="form-section"
+    id="admission">
 
-    <!-- Admission form -->
-    <div id="admission-form" class="form-wrapper">
-        <h2 style="font-size: 1.8rem; margin-bottom: 0.3rem; text-align: center; color: #1e4a6b;">Admission enquiry</h2>
-        <p style="text-align: center; margin-bottom: 1.5rem; color: #43657f;">Fill the form to know about batches, fees, and demo class</p>
-        <form id="admissionForm" action="https://formspree.io/f/xojrdbqv" method="POST">
-            <div class="form-row">
-                <div class="input-group">
-                    <label><i class="fas fa-user"></i> Student's full name *</label>
-                    <input type="text" name="name" placeholder="Full name" required>
-                </div>
-                <div class="input-group">
-                    <label><i class="fas fa-phone-alt"></i> Phone number *</label>
-                    <input type="tel" name="phone" placeholder="+91 XXXXXXXXXX" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="input-group">
-                    <label><i class="fas fa-envelope"></i> Email address</label>
-                    <input type="email" name="email" placeholder="parent@example.com">
-                </div>
-                <div class="input-group">
-                    <label><i class="fas fa-graduation-cap"></i> Grade / Class *</label>
-                    <select name="grade" required>
-                        <option value="">Select class</option>
-                        <option>Class 5 - 7</option>
-                        <option>Class 8 - 9</option>
-                        <option>Class 10 (Board preparation)</option>
-                        <option>Class 11 & 12</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="input-group">
-                    <label><i class="fas fa-layer-group"></i> Syllabus *</label>
-                    <select name="syllabus" required>
-                        <option value="">Select syllabus</option>
-                        <option>CBSE</option>
-                        <option>State Syllabus</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label><i class="fas fa-globe"></i> Preferred class mode *</label>
-                    <div class="radio-group">
-                        <div><input type="radio" name="class_mode" value="Offline Classroom" required> <span>🏫 Offline</span></div>
-                        <div><input type="radio" name="class_mode" value="Online Live"> <span>💻 Online</span></div>
+        <div class="form-wrapper">
+
+            <h2>Admission Enquiry</h2>
+
+            <p>
+
+                Fill the form to know about
+                batches, fees, and demo class.
+
+            </p>
+
+            <form
+            id="admissionForm"
+            action="https://formspree.io/f/xojrdbqv"
+            method="POST">
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Student Name *
+                        </label>
+
+                        <input
+                        type="text"
+                        name="name"
+                        required>
+
                     </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Phone Number *
+                        </label>
+
+                        <input
+                        type="tel"
+                        name="phone"
+                        required>
+
+                    </div>
+
                 </div>
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-comment-dots"></i> Message or questions</label>
-                <textarea name="message" rows="2" placeholder="Additional details, doubts, or preferred timings..."></textarea>
-            </div>
-            <input type="text" name="_gotcha" style="display:none">
-            <button type="submit" class="btn-submit"><i class="fas fa-pen-fancy"></i> Send admission enquiry</button>
-            <div class="form-status" id="formStatus"></div>
-            <div class="small-note"><i class="fas fa-lock"></i> Your details are secure. We'll get back within 24 hours.</div>
-        </form>
-    </div>
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>Email</label>
+
+                        <input
+                        type="email"
+                        name="email">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Class *</label>
+
+                        <select
+                        name="grade"
+                        required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>
+                                Class 5 - 7
+                            </option>
+
+                            <option>
+                                Class 8 - 9
+                            </option>
+
+                            <option>
+                                Class 10
+                            </option>
+
+                            <option>
+                                Class 11 & 12
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Syllabus *
+                        </label>
+
+                        <select
+                        name="syllabus"
+                        required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>
+                                CBSE
+                            </option>
+
+                            <option>
+                                State Syllabus
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Preferred Mode *
+                        </label>
+
+                        <div class="radio-group">
+
+                            <label>
+                                <input
+                                type="radio"
+                                name="mode"
+                                value="Offline"
+                                required>
+
+                                Offline
+                            </label>
+
+                            <label>
+                                <input
+                                type="radio"
+                                name="mode"
+                                value="Online">
+
+                                Online
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="input-group"
+                style="margin-bottom:22px;">
+
+                    <label>
+                        Message
+                    </label>
+
+                    <textarea
+                    name="message"
+                    rows="4"></textarea>
+
+                </div>
+
+                <!-- SPAM PROTECTION -->
+
+                <input
+                type="text"
+                name="_gotcha"
+                style="display:none">
+
+                <button
+                type="submit"
+                class="btn-submit">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Send Enquiry
+
+                </button>
+
+                <div
+                class="form-status"
+                id="formStatus">
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
 
     <footer>
-        <p>📍 Zuhara Tuition Center — Near Eranjipalam, Kozhikode, Kerala</p>
-        <p>CBSE & State Syllabus classes · Offline & online batches · Grades 5 to 12</p>
-        <p>© 2025 Zuhara Tuition Center — Admissions open</p>
+
+        <p>
+
+            📍 Zuhara Tuition Center · Near Eranjipalam · Kozhikode
+
+        </p>
+
+        <p>
+
+            CBSE & State Syllabus · Offline & Online Classes
+
+        </p>
+
+        <p>
+
+            © 2026 Zuhara Tuition Center
+
+        </p>
+
     </footer>
+
 </div>
 
 <script>
-    (function() {
-        const form = document.getElementById('admissionForm');
-        const statusDiv = document.getElementById('formStatus');
-        
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            statusDiv.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending enquiry...';
-            statusDiv.style.color = "#2c7a6e";
-            
-            const formData = new FormData(form);
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+
+(function(){
+
+    const form =
+    document.getElementById(
+    'admissionForm');
+
+    const statusDiv =
+    document.getElementById(
+    'formStatus');
+
+    form.addEventListener(
+    'submit',
+
+    async function(e){
+
+        e.preventDefault();
+
+        statusDiv.innerHTML =
+
+        '<i class="fas fa-spinner fa-pulse"></i> Sending enquiry...';
+
+        statusDiv.style.color =
+        "#2c7a6e";
+
+        const formData =
+        new FormData(form);
+
+        try{
+
+            const response =
+            await fetch(
+                form.action,
+                {
+                    method:'POST',
+                    body:formData,
+                    headers:{
+                        'Accept':'application/json'
                     }
-                });
-                
-                if (response.ok) {
-                    statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> ✓ Enquiry sent. Our team will contact you soon.';
-                    statusDiv.style.color = "#1f6e5c";
-                    form.reset();
-                    setTimeout(() => {
-                        statusDiv.innerHTML = '';
-                    }, 6000);
-                } else {
-                    statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Could not submit. Please call the number shown on contact.';
-                    statusDiv.style.color = "#b1624b";
                 }
-            } catch (err) {
-                statusDiv.innerHTML = '<i class="fas fa-wifi-slash"></i> Network issue. Please try again.';
-                statusDiv.style.color = "#b1624b";
+            );
+
+            const result =
+            await response.json();
+
+            if(response.ok){
+
+                statusDiv.innerHTML =
+
+                '<i class="fas fa-check-circle"></i> Enquiry submitted successfully.';
+
+                statusDiv.style.color =
+                "#1f6e5c";
+
+                form.reset();
+
             }
-        });
-        
-        document.querySelectorAll('.nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const hash = this.getAttribute('href');
-                if(hash && hash !== '#' && hash.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(hash);
-                    if(target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
-    })();
+            else{
+
+                statusDiv.innerHTML =
+
+                '<i class="fas fa-exclamation-triangle"></i> ' +
+
+                (result.errors
+                ? result.errors.map(
+                    error=>error.message
+                  ).join(", ")
+                : "Something went wrong.");
+
+                statusDiv.style.color =
+                "#d9534f";
+            }
+
+        }
+        catch(error){
+
+            statusDiv.innerHTML =
+
+            '<i class="fas fa-wifi"></i> Network error. Please try again.';
+
+            statusDiv.style.color =
+            "#d9534f";
+        }
+
+    });
+
+})();
+
 </script>
+
 </body>
 </html>
