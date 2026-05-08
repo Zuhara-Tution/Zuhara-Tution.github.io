@@ -297,17 +297,18 @@ select{
 </div>
 
 <script>
+
 let videos = [];
 let currentClass = "All";
 let currentSubject = "All";
 
-/* ================= NORMALIZER ================= */
-function normalize(value){
-    return value
-        ?.toString()
+/* ================= CLEAN VALUE ================= */
+function clean(value){
+    return (value || "")
+        .toString()
+        .replace(/[\r\t]+/g, "")
         .trim()
-        .replace(/\s+/g, " ")
-        .toLowerCase();
+        .replace(/\s+/g, " ");
 }
 
 /* ================= LOAD VIDEOS ================= */
@@ -325,10 +326,10 @@ async function loadVideos(){
             const parts = line.split("|");
 
             return {
-                url: parts[0]?.trim(),
-                title: parts[1]?.trim(),
-                className: parts[2]?.trim(),
-                subject: parts[3]?.trim()
+                url: clean(parts[0]),
+                title: clean(parts[1]),
+                className: clean(parts[2]),
+                subject: clean(parts[3])
             };
         })
         .filter(v =>
@@ -342,7 +343,7 @@ async function loadVideos(){
     renderVideos();
 }
 
-/* ================= FILTER SETUP ================= */
+/* ================= FILTERS ================= */
 function setupFilters(){
 
     const classFilter = document.getElementById("classFilter");
@@ -353,15 +354,12 @@ function setupFilters(){
 
     videos.forEach(v => {
 
-        const cls = v.className?.trim();
-        const sub = v.subject?.trim();
-
-        if(cls && !/^\d+$/.test(cls)) {
-            classSet.add(cls);
+        if(v.className && !/^\d+$/.test(v.className)){
+            classSet.add(v.className);
         }
 
-        if(sub) {
-            subjectSet.add(sub);
+        if(v.subject){
+            subjectSet.add(v.subject);
         }
     });
 
@@ -387,7 +385,7 @@ function setupFilters(){
     };
 }
 
-/* ================= RENDER VIDEOS ================= */
+/* ================= RENDER ================= */
 function renderVideos(){
 
     const grid = document.getElementById("videoGrid");
@@ -397,11 +395,11 @@ function renderVideos(){
 
         const matchClass =
             currentClass === "All" ||
-            normalize(v.className) === normalize(currentClass);
+            clean(v.className) === clean(currentClass);
 
         const matchSubject =
             currentSubject === "All" ||
-            normalize(v.subject) === normalize(currentSubject);
+            clean(v.subject) === clean(currentSubject);
 
         const matchSearch =
             v.title.toLowerCase().includes(search);
@@ -422,7 +420,7 @@ function renderVideos(){
 
     filtered.forEach(video => {
 
-        const id = video.url.split("/embed/")[1];
+        const id = video.url.split("/embed/")[1] || "";
         const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
         const card = document.createElement("div");
@@ -452,7 +450,7 @@ function renderVideos(){
     });
 }
 
-/* ================= PLAY VIDEO ================= */
+/* ================= PLAY ================= */
 function playVideo(video){
 
     document.getElementById("homePage").style.display = "none";
@@ -476,6 +474,7 @@ document.getElementById("searchInput")
 
 /* ================= INIT ================= */
 loadVideos();
+
 </script>
 
 </body>
