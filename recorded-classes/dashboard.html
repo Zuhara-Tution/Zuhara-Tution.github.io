@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8"/>
+<meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0"/>
+content="width=device-width, initial-scale=1.0">
 
 <title>Zuhara Tuition Center</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet"/>
+rel="stylesheet">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -27,9 +27,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 
     --bg:#f4f7fb;
     --card:#ffffff;
-    --border:#e3ebf5;
-    --text:#162033;
-    --muted:#6c7a92;
+    --border:#e5eaf3;
+    --text:#152033;
+    --muted:#6b7a90;
+
     --blue:#3b82f6;
     --blue2:#2563eb;
 
@@ -37,7 +38,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     0 10px 40px rgba(15,23,42,0.08);
 
     --shadow2:
-    0 20px 50px rgba(59,130,246,0.10);
+    0 20px 50px rgba(59,130,246,0.12);
 }
 
 body{
@@ -73,7 +74,7 @@ body{
 
     width:100%;
 
-    height:82px;
+    height:84px;
 
     background:
     rgba(255,255,255,0.82);
@@ -109,8 +110,8 @@ body{
 
 .logo-icon{
 
-    width:50px;
-    height:50px;
+    width:52px;
+    height:52px;
 
     border-radius:18px;
 
@@ -137,9 +138,9 @@ body{
 
     flex:1;
 
-    max-width:540px;
+    max-width:500px;
 
-    margin:0 30px;
+    margin:0 25px;
 
     position:relative;
 }
@@ -157,8 +158,6 @@ body{
     outline:none;
 
     background:white;
-
-    color:var(--text);
 
     font-size:0.95rem;
 
@@ -212,113 +211,11 @@ body{
     color:white;
 }
 
-/* LAYOUT */
-
-.layout{
-
-    display:flex;
-
-    margin-top:82px;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-
-    width:260px;
-
-    position:fixed;
-
-    top:82px;
-    left:0;
-
-    height:calc(100vh - 82px);
-
-    background:
-    rgba(255,255,255,0.75);
-
-    backdrop-filter:blur(18px);
-
-    border-right:
-    1px solid var(--border);
-
-    padding:24px 16px;
-
-    overflow-y:auto;
-}
-
-.sidebar-title{
-
-    font-size:0.78rem;
-
-    font-weight:700;
-
-    color:var(--muted);
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    margin-bottom:18px;
-
-    padding-left:10px;
-}
-
-.subject-btn{
-
-    width:100%;
-
-    padding:15px 16px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:transparent;
-
-    color:var(--text);
-
-    text-align:left;
-
-    cursor:pointer;
-
-    margin-bottom:10px;
-
-    transition:0.25s;
-
-    font-weight:600;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.subject-btn:hover{
-
-    background:#eef5ff;
-}
-
-.subject-btn.active{
-
-    background:
-    linear-gradient(135deg,
-    var(--blue),
-    var(--blue2));
-
-    color:white;
-}
-
 /* CONTENT */
 
 .content{
 
-    margin-left:260px;
-
-    width:calc(100% - 260px);
-
-    padding:34px;
+    padding:120px 34px 40px;
 }
 
 .section-title{
@@ -327,7 +224,49 @@ body{
 
     font-weight:800;
 
+    margin-bottom:28px;
+}
+
+/* FILTERS */
+
+.filters{
+
+    display:flex;
+
+    gap:16px;
+
     margin-bottom:30px;
+
+    flex-wrap:wrap;
+}
+
+.filters select{
+
+    padding:14px 18px;
+
+    border-radius:16px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    font-size:0.95rem;
+
+    outline:none;
+
+    cursor:pointer;
+
+    min-width:180px;
+
+    transition:0.25s;
+}
+
+.filters select:focus{
+
+    border-color:var(--blue);
+
+    box-shadow:
+    0 0 0 4px rgba(59,130,246,0.10);
 }
 
 /* GRID */
@@ -503,7 +442,7 @@ body{
 
     overflow:hidden;
 
-    border-radius:32px;
+    border-radius:30px;
 
     background:black;
 
@@ -573,35 +512,6 @@ body{
 
 /* MOBILE */
 
-@media(max-width:950px){
-
-    .sidebar{
-
-        width:90px;
-    }
-
-    .sidebar-title{
-
-        display:none;
-    }
-
-    .subject-btn{
-
-        justify-content:center;
-
-        padding:16px 6px;
-
-        font-size:0.72rem;
-    }
-
-    .content{
-
-        margin-left:90px;
-
-        width:calc(100% - 90px);
-    }
-}
-
 @media(max-width:720px){
 
     .header{
@@ -615,16 +525,6 @@ body{
         gap:14px;
     }
 
-    .layout{
-
-        margin-top:140px;
-    }
-
-    .sidebar{
-
-        top:140px;
-    }
-
     .search-box{
 
         order:3;
@@ -636,14 +536,19 @@ body{
         margin:0;
     }
 
+    .content{
+
+        padding:160px 20px 30px;
+    }
+
     .video-grid{
 
         grid-template-columns:1fr;
     }
 
-    .content{
+    .filters select{
 
-        padding:20px;
+        width:100%;
     }
 }
 
@@ -685,67 +590,56 @@ body{
 
 </div>
 
-<div class="layout">
+<div class="content">
 
-    <div class="sidebar">
+    <div id="homePage">
 
-        <div class="sidebar-title">
-            Subjects
+        <div class="section-title">
+            Recorded Classes
         </div>
 
-        <div id="subjectList"></div>
+        <div class="filters"
+        id="filters"></div>
+
+        <div class="video-grid"
+        id="videoGrid"></div>
 
     </div>
 
-    <div class="content">
+    <div class="player-page"
+    id="playerPage">
 
-        <div id="homePage">
+        <button class="back-btn"
+        onclick="goBack()">
 
-            <div class="section-title">
-                Recorded Classes
+            <i class="fas fa-arrow-left"></i>
+            Back to Classes
+
+        </button>
+
+        <div class="video-player">
+
+            <iframe
+            id="videoFrame"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="autoplay; encrypted-media"
+            sandbox="allow-scripts allow-same-origin allow-presentation">
+            </iframe>
+
+            <div class="video-watermark">
+                Zuhara Tuition Center
             </div>
-
-            <div class="video-grid"
-            id="videoGrid"></div>
 
         </div>
 
-        <div class="player-page"
-        id="playerPage">
+        <div class="video-details">
 
-            <button class="back-btn"
-            onclick="goBack()">
+            <h2 id="videoTitle"></h2>
 
-                <i class="fas fa-arrow-left"></i>
-                Back to Classes
-
-            </button>
-
-            <div class="video-player">
-
-                <iframe
-                id="videoFrame"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="autoplay; encrypted-media"
-                sandbox="allow-scripts allow-same-origin allow-presentation">
-                </iframe>
-
-                <div class="video-watermark">
-                    Zuhara Tuition Center
-                </div>
-
-            </div>
-
-            <div class="video-details">
-
-                <h2 id="videoTitle"></h2>
-
-                <div class="video-meta"
-                id="videoMeta"></div>
-
-            </div>
+            <div class="video-meta"
+            id="videoMeta"></div>
 
         </div>
 
@@ -782,7 +676,8 @@ checkAuthentication();
 
 let videos = [];
 
-let currentCategory = 'All';
+let currentClass = 'All';
+let currentSubject = 'All';
 
 async function loadVideos(){
 
@@ -820,8 +715,11 @@ async function loadVideos(){
             const title =
             parts[1]?.trim() || 'Untitled';
 
-            const category =
+            const className =
             parts[2]?.trim() || 'General';
+
+            const subject =
+            parts[3]?.trim() || 'General';
 
             if(url.includes('watch?v=')){
 
@@ -845,12 +743,13 @@ async function loadVideos(){
             videos.push({
                 url,
                 title,
-                category
+                className,
+                subject
             });
 
         });
 
-        renderSubjects();
+        renderFilters();
 
         renderVideos();
 
@@ -864,61 +763,80 @@ async function loadVideos(){
     }
 }
 
-function renderSubjects(){
+function renderFilters(){
+
+    const classes = [
+
+        'All',
+
+        ...new Set(
+            videos.map(v=>v.className)
+        )
+    ];
 
     const subjects = [
 
         'All',
 
         ...new Set(
-            videos.map(v=>v.category)
+            videos.map(v=>v.subject)
         )
     ];
 
     const container =
-    document
-    .getElementById('subjectList');
+    document.getElementById('filters');
 
     container.innerHTML = '';
 
-    subjects.forEach(subject=>{
+    const classSelect =
+    document.createElement('select');
 
-        const btn =
-        document
-        .createElement('button');
+    classSelect.innerHTML =
 
-        btn.className =
-        'subject-btn';
+    classes.map(c=>
+    `<option value="${c}">${c}</option>`
+    ).join('');
 
-        if(subject === currentCategory){
+    classSelect.value =
+    currentClass;
 
-            btn.classList.add('active');
-        }
+    classSelect.onchange = (e)=>{
 
-        btn.innerHTML = `
-            <i class="fas fa-book"></i>
-            ${subject}
-        `;
+        currentClass =
+        e.target.value;
 
-        btn.onclick = ()=>{
+        renderVideos();
+    };
 
-            currentCategory =
-            subject;
+    const subjectSelect =
+    document.createElement('select');
 
-            renderSubjects();
+    subjectSelect.innerHTML =
 
-            renderVideos();
-        };
+    subjects.map(s=>
+    `<option value="${s}">${s}</option>`
+    ).join('');
 
-        container.appendChild(btn);
-    });
+    subjectSelect.value =
+    currentSubject;
+
+    subjectSelect.onchange = (e)=>{
+
+        currentSubject =
+        e.target.value;
+
+        renderVideos();
+    };
+
+    container.appendChild(classSelect);
+
+    container.appendChild(subjectSelect);
 }
 
 function renderVideos(){
 
     const grid =
-    document
-    .getElementById('videoGrid');
+    document.getElementById('videoGrid');
 
     const search =
     document
@@ -931,11 +849,17 @@ function renderVideos(){
     const filtered =
     videos.filter(video=>{
 
-        const matchCategory =
+        const matchClass =
 
-        currentCategory === 'All'
+        currentClass === 'All'
         ||
-        video.category === currentCategory;
+        video.className === currentClass;
+
+        const matchSubject =
+
+        currentSubject === 'All'
+        ||
+        video.subject === currentSubject;
 
         const matchSearch =
 
@@ -943,16 +867,19 @@ function renderVideos(){
         .toLowerCase()
         .includes(search);
 
-        return matchCategory
-        &&
-        matchSearch;
+        return (
+            matchClass
+            &&
+            matchSubject
+            &&
+            matchSearch
+        );
     });
 
     filtered.forEach(video=>{
 
         const card =
-        document
-        .createElement('div');
+        document.createElement('div');
 
         card.className =
         'video-card';
@@ -987,7 +914,9 @@ function renderVideos(){
                 </div>
 
                 <div class="video-category">
-                    ${video.category}
+                    ${video.className}
+                    •
+                    ${video.subject}
                 </div>
 
             </div>
@@ -1027,9 +956,7 @@ function playVideo(video){
 
     '&iv_load_policy=3' +
 
-    '&cc_load_policy=0' +
-
-    '&autohide=1';
+    '&cc_load_policy=0';
 
     document
     .getElementById('videoFrame')
@@ -1044,7 +971,7 @@ function playVideo(video){
     document
     .getElementById('videoMeta')
     .innerText =
-    video.category;
+    `${video.className} • ${video.subject}`;
 
     window.scrollTo({
         top:0,
