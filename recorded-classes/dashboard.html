@@ -13,179 +13,267 @@
 
 <style>
 
-/* ===== SAME CSS (UNCHANGED FOR BREVITY) ===== */
-
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 :root{
---blue:#2563eb;
---light:#f5f7fb;
---border:#e4e8f1;
---text:#111827;
---muted:#6b7280;
---card:#ffffff;
---shadow:0 8px 25px rgba(0,0,0,0.06);
+    --blue:#2563eb;
+    --light:#f5f7fb;
+    --border:#e4e8f1;
+    --text:#111827;
+    --muted:#6b7280;
+    --card:#ffffff;
+    --shadow:0 8px 25px rgba(0,0,0,0.06);
 }
 
 body{
-font-family:'Inter',sans-serif;
-background:var(--light);
-color:var(--text);
+    font-family:'Inter',sans-serif;
+    background:var(--light);
+    color:var(--text);
 }
 
 .header{
-position:sticky;top:0;z-index:999;
-background:white;border-bottom:1px solid var(--border);
-padding:16px 20px;
-display:flex;align-items:center;justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.logo{display:flex;align-items:center;gap:12px;font-weight:800;}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:1.1rem;
+    font-weight:800;
+}
 
 .logo-icon{
-width:48px;height:48px;border-radius:14px;
-background:var(--blue);color:white;
-display:flex;align-items:center;justify-content:center;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:var(--blue);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .logout-btn{
-text-decoration:none;background:#eff6ff;
-color:var(--blue);padding:12px 16px;border-radius:12px;
-font-weight:600;
+    background:#eff6ff;
+    color:var(--blue);
+    padding:12px 16px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
 }
 
-.main{max-width:1300px;margin:auto;padding:24px 18px 40px;}
+.main{
+    max-width:1300px;
+    margin:auto;
+    padding:24px 18px;
+}
 
-.title{font-size:2rem;font-weight:800;}
+.title{
+    font-size:2rem;
+    font-weight:800;
+}
 
-.subtitle{color:var(--muted);margin-bottom:25px;}
+.subtitle{
+    color:var(--muted);
+    margin-bottom:20px;
+}
 
-.search-box{position:relative;margin-bottom:20px;}
+.search-box{
+    position:relative;
+    margin-bottom:20px;
+}
 
 .search-box input{
-width:100%;padding:18px 20px 18px 52px;
-border-radius:16px;border:1px solid var(--border);
+    width:100%;
+    padding:18px 20px 18px 52px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    font-size:1rem;
 }
 
-.search-box i{position:absolute;left:18px;top:50%;transform:translateY(-50%);}
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--muted);
+}
 
 .filters{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-margin-bottom:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-bottom:30px;
 }
 
 .filter-card{
-background:white;border:1px solid var(--border);
-border-radius:18px;padding:18px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:18px;
+    box-shadow:var(--shadow);
+}
+
+.filter-label{
+    font-size:0.88rem;
+    color:var(--muted);
+    margin-bottom:10px;
 }
 
 .video-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:22px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
 }
 
 .video-card{
-background:white;border-radius:22px;
-overflow:hidden;cursor:pointer;
-box-shadow:var(--shadow);
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:var(--shadow);
 }
 
-.thumbnail{position:relative;aspect-ratio:16/9;}
+.thumbnail{
+    aspect-ratio:16/9;
+    position:relative;
+    background:black;
+}
 
-.thumbnail img{width:100%;height:100%;object-fit:cover;}
+.thumbnail img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
 .play{
-position:absolute;inset:0;
-display:flex;align-items:center;justify-content:center;
-background:rgba(0,0,0,0.25);
-color:white;font-size:2rem;
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    background:rgba(0,0,0,0.25);
+    font-size:2rem;
 }
 
-.video-info{padding:18px;}
+.video-info{
+    padding:18px;
+}
 
-.video-title{font-weight:700;margin-bottom:10px;}
+.video-title{
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
 
 .tag{
-background:#eff6ff;color:var(--blue);
-padding:6px 10px;border-radius:999px;
-font-size:0.8rem;font-weight:600;
-display:inline-block;margin-right:6px;
+    background:#eff6ff;
+    color:var(--blue);
+    padding:8px 12px;
+    border-radius:999px;
+    font-size:0.82rem;
 }
 
-.player-page{display:none;}
+.player-page{
+    display:none;
+}
 
-.player{width:100%;aspect-ratio:16/9;background:black;border-radius:24px;}
+.player{
+    width:100%;
+    aspect-ratio:16/9;
+    background:black;
+    border-radius:20px;
+    overflow:hidden;
+}
 
-.player iframe{width:100%;height:100%;border:none;}
+.player iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
 
 .back-btn{
-padding:12px 16px;border:none;
-background:white;border-radius:12px;
-cursor:pointer;margin-bottom:15px;
+    margin-bottom:15px;
+    padding:12px 16px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    box-shadow:var(--shadow);
+    cursor:pointer;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
-<div class="logo">
-<div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-Zuhara Tuition Center
-</div>
-
-<a class="logout-btn" href="logout.html">Logout</a>
+    <div class="logo">
+        <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+        Zuhara Tuition Center
+    </div>
+    <a class="logout-btn" href="logout.html">Logout</a>
 </div>
 
 <div class="main">
 
-<!-- HOME -->
-<div id="homePage">
+    <div id="homePage">
 
-<div class="title">Recorded Classes</div>
-<div class="subtitle">Classes 8, 9, 10 only</div>
+        <div class="title">Recorded Classes</div>
+        <div class="subtitle">Select Class and Subject</div>
 
-<div class="search-box">
-<i class="fas fa-search"></i>
-<input type="text" id="searchInput" placeholder="Search video title...">
-</div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search video title...">
+        </div>
 
-<div class="filters">
+        <div class="filters">
 
-<div class="filter-card">
-<div>Class</div>
-<select id="classFilter"></select>
-</div>
+            <div class="filter-card">
+                <div class="filter-label">Class</div>
+                <select id="classFilter"></select>
+            </div>
 
-<div class="filter-card">
-<div>Subject</div>
-<select id="subjectFilter"></select>
-</div>
+            <div class="filter-card">
+                <div class="filter-label">Subject</div>
+                <select id="subjectFilter"></select>
+            </div>
 
-</div>
+        </div>
 
-<div class="video-grid" id="videoGrid"></div>
+        <div class="video-grid" id="videoGrid"></div>
 
-</div>
+    </div>
 
-<!-- PLAYER -->
-<div class="player-page" id="playerPage">
+    <div class="player-page" id="playerPage">
 
-<button class="back-btn" onclick="goBack()">← Back</button>
+        <button class="back-btn" onclick="goBack()">← Back</button>
 
-<div class="player">
-<iframe id="videoFrame" allowfullscreen></iframe>
-</div>
+        <div class="player">
+            <iframe id="videoFrame"></iframe>
+        </div>
 
-<h2 id="videoTitle"></h2>
-
-<div id="videoMeta"></div>
-
-</div>
+    </div>
 
 </div>
 
@@ -195,143 +283,123 @@ let videos = [];
 let currentClass = 'All';
 let currentSubject = 'All';
 
-const ALLOWED_CLASSES = ['8','9','10'];
-
 async function loadVideos(){
 
-const response = await fetch('links.txt');
-const text = await response.text();
+    const res = await fetch('links.txt');
+    const text = await res.text();
 
-videos = [];
+    videos = text.split('\n')
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'))
+    .map(line => {
+        const parts = line.split('|');
+        return {
+            url: parts[0]?.trim(),
+            title: parts[1]?.trim(),
+            className: parts[2]?.trim(),
+            subject: parts[3]?.trim()
+        };
+    })
+    .filter(v =>
+        v.url && v.title && v.className && v.subject
+    );
 
-text.split('\n').forEach(line => {
-
-line = line.trim();
-if(!line || line.startsWith('#')) return;
-
-const parts = line.split('|');
-
-const className = parts[2]?.trim();
-
-// 🔒 HARD FILTER
-if(!ALLOWED_CLASSES.includes(className)) return;
-
-videos.push({
-url: parts[0]?.trim(),
-title: parts[1]?.trim(),
-className,
-subject: parts[3]?.trim()
-});
-
-});
-
-setupFilters();
-renderVideos();
+    setupFilters();
+    renderVideos();
 }
 
 function setupFilters(){
 
-const classFilter = document.getElementById('classFilter');
-const subjectFilter = document.getElementById('subjectFilter');
+    const classFilter = document.getElementById('classFilter');
+    const subjectFilter = document.getElementById('subjectFilter');
 
-const classes = [
-'All',
-...ALLOWED_CLASSES.filter(c =>
-videos.some(v => v.className === c)
-)
-];
+    const classes = ['All', ...new Set(
+        videos
+        .map(v => v.className)
+        .filter(v => v && isNaN(v))
+    )];
 
-const subjects = [
-'All',
-...new Set(videos.map(v => v.subject))
-];
+    const subjects = ['All', ...new Set(
+        videos
+        .map(v => v.subject)
+        .filter(v => v)
+    )];
 
-classFilter.innerHTML =
-classes.map(c => `<option value="${c}">${c}</option>`).join('');
+    classFilter.innerHTML = classes.map(c =>
+        `<option value="${c}">${c}</option>`
+    ).join('');
 
-subjectFilter.innerHTML =
-subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+    subjectFilter.innerHTML = subjects.map(s =>
+        `<option value="${s}">${s}</option>`
+    ).join('');
 
-classFilter.onchange = () => {
-currentClass = classFilter.value;
-renderVideos();
-};
+    classFilter.onchange = () => {
+        currentClass = classFilter.value;
+        renderVideos();
+    };
 
-subjectFilter.onchange = () => {
-currentSubject = subjectFilter.value;
-renderVideos();
-};
+    subjectFilter.onchange = () => {
+        currentSubject = subjectFilter.value;
+        renderVideos();
+    };
 }
 
 function renderVideos(){
 
-const grid = document.getElementById('videoGrid');
-const search = document.getElementById('searchInput').value.toLowerCase();
+    const grid = document.getElementById('videoGrid');
+    const search = document.getElementById('searchInput').value.toLowerCase();
 
-grid.innerHTML = '';
+    const filtered = videos.filter(v => {
+        return (
+            (currentClass === 'All' || v.className === currentClass) &&
+            (currentSubject === 'All' || v.subject === currentSubject) &&
+            v.title.toLowerCase().includes(search)
+        );
+    });
 
-const filtered = videos.filter(v => {
+    grid.innerHTML = '';
 
-return (
-(currentClass === 'All' || v.className === currentClass) &&
-(currentSubject === 'All' || v.subject === currentSubject) &&
-v.title.toLowerCase().includes(search)
-);
+    if(filtered.length === 0){
+        grid.innerHTML = "<p>No videos found</p>";
+        return;
+    }
 
-});
+    filtered.forEach(video => {
 
-if(filtered.length === 0){
-grid.innerHTML = `<div style="padding:20px;background:white;border-radius:15px;">No videos found</div>`;
-return;
-}
+        const id = video.url.split('/embed/')[1];
+        const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
-filtered.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
 
-const id = video.url.split('/embed/')[1];
-const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+        card.innerHTML = `
+            <div class="thumbnail">
+                <img src="${thumb}">
+                <div class="play"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">${video.title}</div>
+                <div class="tags">
+                    <div class="tag">${video.className}</div>
+                    <div class="tag">${video.subject}</div>
+                </div>
+            </div>
+        `;
 
-const card = document.createElement('div');
-card.className = 'video-card';
+        card.onclick = () => {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('playerPage').style.display = 'block';
+            document.getElementById('videoFrame').src = video.url + "?autoplay=1";
+        };
 
-card.innerHTML = `
-<div class="thumbnail">
-<img src="${thumb}">
-<div class="play"><i class="fas fa-play"></i></div>
-</div>
-
-<div class="video-info">
-<div class="video-title">${video.title}</div>
-<div class="tag">${video.className}</div>
-<div class="tag">${video.subject}</div>
-</div>
-`;
-
-card.onclick = () => playVideo(video);
-grid.appendChild(card);
-
-});
-
-}
-
-function playVideo(video){
-
-document.getElementById('homePage').style.display = 'none';
-document.getElementById('playerPage').style.display = 'block';
-
-document.getElementById('videoFrame').src = video.url + '?autoplay=1';
-document.getElementById('videoTitle').innerText = video.title;
-
-document.getElementById('videoMeta').innerHTML = `
-<span class="tag">${video.className}</span>
-<span class="tag">${video.subject}</span>
-`;
-
+        grid.appendChild(card);
+    });
 }
 
 function goBack(){
-document.getElementById('playerPage').style.display = 'none';
-document.getElementById('homePage').style.display = 'block';
-document.getElementById('videoFrame').src = '';
+    document.getElementById('playerPage').style.display = 'none';
+    document.getElementById('homePage').style.display = 'block';
+    document.getElementById('videoFrame').src = '';
 }
 
 document.getElementById('searchInput').addEventListener('input', renderVideos);
