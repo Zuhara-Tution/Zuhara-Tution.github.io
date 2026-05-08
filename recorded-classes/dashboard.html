@@ -25,7 +25,6 @@
     --border:#e4e8f1;
     --text:#111827;
     --muted:#6b7280;
-    --card:#ffffff;
     --shadow:0 8px 25px rgba(0,0,0,0.06);
 }
 
@@ -35,6 +34,7 @@ body{
     color:var(--text);
 }
 
+/* HEADER */
 .header{
     position:sticky;
     top:0;
@@ -51,34 +51,34 @@ body{
     display:flex;
     align-items:center;
     gap:12px;
-    font-size:1.1rem;
     font-weight:800;
 }
 
 .logo-icon{
     width:48px;
     height:48px;
-    border-radius:14px;
     background:var(--blue);
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
+    border-radius:14px;
 }
 
 .logout-btn{
     background:#eff6ff;
     color:var(--blue);
-    padding:12px 16px;
-    border-radius:12px;
+    padding:10px 14px;
+    border-radius:10px;
     text-decoration:none;
     font-weight:600;
 }
 
+/* MAIN */
 .main{
-    max-width:1300px;
+    max-width:1200px;
     margin:auto;
-    padding:24px 18px;
+    padding:25px 18px;
 }
 
 .title{
@@ -91,6 +91,7 @@ body{
     margin-bottom:20px;
 }
 
+/* SEARCH */
 .search-box{
     position:relative;
     margin-bottom:20px;
@@ -98,58 +99,76 @@ body{
 
 .search-box input{
     width:100%;
-    padding:18px 20px 18px 52px;
-    border-radius:16px;
+    padding:16px 18px 16px 50px;
+    border-radius:14px;
     border:1px solid var(--border);
+    outline:none;
     font-size:1rem;
 }
 
 .search-box i{
     position:absolute;
-    left:18px;
+    left:16px;
     top:50%;
     transform:translateY(-50%);
     color:var(--muted);
 }
 
+/* FILTERS */
 .filters{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:15px;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .filter-card{
     background:white;
+    padding:16px;
+    border-radius:14px;
     border:1px solid var(--border);
-    border-radius:18px;
-    padding:18px;
     box-shadow:var(--shadow);
 }
 
 .filter-label{
-    font-size:0.88rem;
+    font-size:0.85rem;
     color:var(--muted);
-    margin-bottom:10px;
+    margin-bottom:8px;
+    font-weight:600;
 }
 
+select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    outline:none;
+}
+
+/* GRID */
 .video-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:22px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:18px;
 }
 
+/* CARD */
 .video-card{
     background:white;
-    border-radius:22px;
+    border-radius:18px;
     overflow:hidden;
-    cursor:pointer;
     box-shadow:var(--shadow);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.video-card:hover{
+    transform:translateY(-3px);
 }
 
 .thumbnail{
-    aspect-ratio:16/9;
     position:relative;
+    aspect-ratio:16/9;
     background:black;
 }
 
@@ -166,12 +185,12 @@ body{
     align-items:center;
     justify-content:center;
     color:white;
-    background:rgba(0,0,0,0.25);
+    background:rgba(0,0,0,0.3);
     font-size:2rem;
 }
 
 .video-info{
-    padding:18px;
+    padding:14px;
 }
 
 .video-title{
@@ -181,18 +200,19 @@ body{
 
 .tags{
     display:flex;
-    gap:10px;
+    gap:8px;
     flex-wrap:wrap;
 }
 
 .tag{
     background:#eff6ff;
     color:var(--blue);
-    padding:8px 12px;
+    padding:6px 10px;
     border-radius:999px;
-    font-size:0.82rem;
+    font-size:0.8rem;
 }
 
+/* PLAYER */
 .player-page{
     display:none;
 }
@@ -200,9 +220,9 @@ body{
 .player{
     width:100%;
     aspect-ratio:16/9;
-    background:black;
-    border-radius:20px;
+    border-radius:16px;
     overflow:hidden;
+    background:black;
 }
 
 .player iframe{
@@ -213,16 +233,15 @@ body{
 
 .back-btn{
     margin-bottom:15px;
-    padding:12px 16px;
+    padding:10px 14px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:white;
     box-shadow:var(--shadow);
     cursor:pointer;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -237,62 +256,65 @@ body{
 
 <div class="main">
 
-    <div id="homePage">
+<div id="homePage">
 
-        <div class="title">Recorded Classes</div>
-        <div class="subtitle">Select Class and Subject</div>
+    <div class="title">Recorded Classes</div>
+    <div class="subtitle">Advanced Filter System</div>
 
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search video title...">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input id="searchInput" placeholder="Search video...">
+    </div>
+
+    <div class="filters">
+
+        <div class="filter-card">
+            <div class="filter-label">Class</div>
+            <select id="classFilter"></select>
         </div>
 
-        <div class="filters">
-
-            <div class="filter-card">
-                <div class="filter-label">Class</div>
-                <select id="classFilter"></select>
-            </div>
-
-            <div class="filter-card">
-                <div class="filter-label">Subject</div>
-                <select id="subjectFilter"></select>
-            </div>
-
+        <div class="filter-card">
+            <div class="filter-label">Subject</div>
+            <select id="subjectFilter"></select>
         </div>
-
-        <div class="video-grid" id="videoGrid"></div>
 
     </div>
 
-    <div class="player-page" id="playerPage">
+    <div class="video-grid" id="videoGrid"></div>
 
-        <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
 
-        <div class="player">
-            <iframe id="videoFrame"></iframe>
-        </div>
+<div class="player-page" id="playerPage">
 
+    <button class="back-btn" onclick="goBack()">← Back</button>
+
+    <div class="player">
+        <iframe id="videoFrame"></iframe>
     </div>
+
+</div>
 
 </div>
 
 <script>
 
 let videos = [];
-let currentClass = 'All';
-let currentSubject = 'All';
+let currentClass = "All";
+let currentSubject = "All";
 
+/* ================= LOAD DATA ================= */
 async function loadVideos(){
 
-    const res = await fetch('links.txt');
+    const res = await fetch("links.txt");
     const text = await res.text();
 
-    videos = text.split('\n')
+    videos = text.split("\n")
     .map(line => line.trim())
-    .filter(line => line && !line.startsWith('#'))
+    .filter(line => line && !line.startsWith("#"))
     .map(line => {
-        const parts = line.split('|');
+
+        const parts = line.split("|");
+
         return {
             url: parts[0]?.trim(),
             title: parts[1]?.trim(),
@@ -301,37 +323,52 @@ async function loadVideos(){
         };
     })
     .filter(v =>
-        v.url && v.title && v.className && v.subject
+        v.url &&
+        v.title &&
+        v.className &&
+        v.subject
     );
 
     setupFilters();
     renderVideos();
 }
 
+/* ================= CLEAN FILTERS ================= */
+function clean(value){
+    return value?.toString().trim();
+}
+
+function isValid(value){
+    return value &&
+           value !== "" &&
+           !/^\d+$/.test(value); // remove pure numbers
+}
+
 function setupFilters(){
 
-    const classFilter = document.getElementById('classFilter');
-    const subjectFilter = document.getElementById('subjectFilter');
+    const classFilter = document.getElementById("classFilter");
+    const subjectFilter = document.getElementById("subjectFilter");
 
-    const classes = ['All', ...new Set(
-        videos
-        .map(v => v.className)
-        .filter(v => v && isNaN(v))
-    )];
+    let classes = new Set();
+    let subjects = new Set();
 
-    const subjects = ['All', ...new Set(
-        videos
-        .map(v => v.subject)
-        .filter(v => v)
-    )];
+    videos.forEach(v => {
 
-    classFilter.innerHTML = classes.map(c =>
-        `<option value="${c}">${c}</option>`
-    ).join('');
+        const cls = clean(v.className);
+        const sub = clean(v.subject);
 
-    subjectFilter.innerHTML = subjects.map(s =>
-        `<option value="${s}">${s}</option>`
-    ).join('');
+        if(isValid(cls)) classes.add(cls);
+        if(isValid(sub)) subjects.add(sub);
+    });
+
+    classes = ["All", ...Array.from(classes).sort()];
+    subjects = ["All", ...Array.from(subjects).sort()];
+
+    classFilter.innerHTML =
+        classes.map(c => `<option value="${c}">${c}</option>`).join("");
+
+    subjectFilter.innerHTML =
+        subjects.map(s => `<option value="${s}">${s}</option>`).join("");
 
     classFilter.onchange = () => {
         currentClass = classFilter.value;
@@ -344,20 +381,22 @@ function setupFilters(){
     };
 }
 
+/* ================= RENDER ================= */
 function renderVideos(){
 
-    const grid = document.getElementById('videoGrid');
-    const search = document.getElementById('searchInput').value.toLowerCase();
+    const grid = document.getElementById("videoGrid");
+    const search = document.getElementById("searchInput").value.toLowerCase();
 
     const filtered = videos.filter(v => {
+
         return (
-            (currentClass === 'All' || v.className === currentClass) &&
-            (currentSubject === 'All' || v.subject === currentSubject) &&
+            (currentClass === "All" || v.className === currentClass) &&
+            (currentSubject === "All" || v.subject === currentSubject) &&
             v.title.toLowerCase().includes(search)
         );
     });
 
-    grid.innerHTML = '';
+    grid.innerHTML = "";
 
     if(filtered.length === 0){
         grid.innerHTML = "<p>No videos found</p>";
@@ -366,17 +405,18 @@ function renderVideos(){
 
     filtered.forEach(video => {
 
-        const id = video.url.split('/embed/')[1];
+        const id = video.url.split("/embed/")[1];
         const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
-        const card = document.createElement('div');
-        card.className = 'video-card';
+        const card = document.createElement("div");
+        card.className = "video-card";
 
         card.innerHTML = `
             <div class="thumbnail">
                 <img src="${thumb}">
                 <div class="play"><i class="fas fa-play"></i></div>
             </div>
+
             <div class="video-info">
                 <div class="video-title">${video.title}</div>
                 <div class="tags">
@@ -387,22 +427,24 @@ function renderVideos(){
         `;
 
         card.onclick = () => {
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('playerPage').style.display = 'block';
-            document.getElementById('videoFrame').src = video.url + "?autoplay=1";
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("playerPage").style.display = "block";
+            document.getElementById("videoFrame").src = video.url + "?autoplay=1";
         };
 
         grid.appendChild(card);
     });
 }
 
+/* ================= BACK ================= */
 function goBack(){
-    document.getElementById('playerPage').style.display = 'none';
-    document.getElementById('homePage').style.display = 'block';
-    document.getElementById('videoFrame').src = '';
+    document.getElementById("playerPage").style.display = "none";
+    document.getElementById("homePage").style.display = "block";
+    document.getElementById("videoFrame").src = "";
 }
 
-document.getElementById('searchInput').addEventListener('input', renderVideos);
+/* ================= EVENTS ================= */
+document.getElementById("searchInput").addEventListener("input", renderVideos);
 
 loadVideos();
 
