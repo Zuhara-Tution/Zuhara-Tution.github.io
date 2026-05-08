@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +14,7 @@ content="width=device-width, initial-scale=1.0">
 rel="stylesheet">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -169,11 +172,9 @@ body::before{
     border:1px solid rgba(255,255,255,0.06);
 }
 
-.search-box input:focus{
+.search-box input::placeholder{
 
-    border:1px solid rgba(59,164,255,0.5);
-
-    box-shadow:0 0 20px rgba(59,164,255,0.3);
+    color:#8fa9c7;
 }
 
 .search-box i{
@@ -201,8 +202,6 @@ body::before{
 
     background:rgba(255,255,255,0.08);
 
-    backdrop-filter:blur(10px);
-
     border:1px solid rgba(255,255,255,0.05);
 
     transition:0.25s;
@@ -211,8 +210,6 @@ body::before{
 .logout-btn:hover{
 
     background:rgba(59,164,255,0.15);
-
-    box-shadow:0 0 20px rgba(59,164,255,0.25);
 }
 
 /* LAYOUT */
@@ -312,8 +309,6 @@ body::before{
     padding:30px;
 }
 
-/* SECTION */
-
 .section-title{
 
     font-size:1.5rem;
@@ -369,28 +364,37 @@ body::before{
     0 10px 40px rgba(0,0,0,0.25);
 }
 
-.thumbnail iframe{
+.thumbnail img{
 
     width:100%;
     height:100%;
 
-    border:none;
+    object-fit:cover;
 
-    pointer-events:none;
+    display:block;
+
+    transition:0.3s;
 }
 
-.thumbnail::after{
+.video-card:hover .thumbnail img{
 
-    content:'';
+    transform:scale(1.05);
+}
+
+.thumbnail-overlay{
 
     position:absolute;
 
     inset:0;
 
-    background:linear-gradient(
-    to top,
-    rgba(0,0,0,0.45),
-    transparent);
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.45),
+        transparent
+    );
+
+    pointer-events:none;
 }
 
 .play-btn{
@@ -419,19 +423,12 @@ body::before{
 
     border:1px solid rgba(255,255,255,0.08);
 
-    opacity:0;
-
     transition:0.25s;
 }
 
 .play-btn i{
 
     font-size:1.5rem;
-}
-
-.video-card:hover .play-btn{
-
-    opacity:1;
 }
 
 .video-info{
@@ -480,8 +477,6 @@ body::before{
 
     background:rgba(255,255,255,0.08);
 
-    backdrop-filter:blur(12px);
-
     transition:0.25s;
 }
 
@@ -514,21 +509,6 @@ body::before{
     height:100%;
 
     border:none;
-}
-
-/* PROTECTION LAYER */
-
-.video-protection{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:60px;
-
-    z-index:10;
 }
 
 .video-watermark{
@@ -578,20 +558,6 @@ body::before{
 .video-meta{
 
     color:#8fa9c7;
-}
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-
-    width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#2456a7;
-
-    border-radius:20px;
 }
 
 /* MOBILE */
@@ -670,8 +636,6 @@ body::before{
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
 
     <div class="logo">
@@ -695,8 +659,9 @@ body::before{
 
     </div>
 
-    <a href="logout.html"
-    class="logout-btn">
+    <a href="./index.html"
+    class="logout-btn"
+    onclick="logout()">
 
         <i class="fas fa-sign-out-alt"></i>
         Logout
@@ -706,8 +671,6 @@ body::before{
 </div>
 
 <div class="layout">
-
-    <!-- SIDEBAR -->
 
     <div class="sidebar">
 
@@ -719,11 +682,7 @@ body::before{
 
     </div>
 
-    <!-- CONTENT -->
-
     <div class="content">
-
-        <!-- HOME -->
 
         <div id="homePage">
 
@@ -735,8 +694,6 @@ body::before{
             id="videoGrid"></div>
 
         </div>
-
-        <!-- PLAYER -->
 
         <div class="player-page"
         id="playerPage">
@@ -751,14 +708,11 @@ body::before{
 
             <div class="video-player">
 
-                <div class="video-protection"></div>
-
                 <iframe
                 id="videoFrame"
-                allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"
                 allow="autoplay; encrypted-media"
-                sandbox="allow-scripts allow-same-origin allow-presentation">
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin">
                 </iframe>
 
                 <div class="video-watermark">
@@ -784,44 +738,59 @@ body::before{
 
 <script>
 
-// AUTH
+/* AUTH */
 
 function checkAuthentication(){
 
-    const cookies =
-    document.cookie.split(';');
+    const authCookie =
+    document.cookie
+    .split(';')
+    .find(cookie=>
+        cookie.trim()
+        .startsWith('zuhara_auth=')
+    );
 
-    for(let cookie of cookies){
+    if(!authCookie){
 
-        const [name,value] =
-        cookie.trim().split('=');
+        window.location.href =
+        './index.html';
 
-        if(name === 'zuhara_auth'
-        && value === 'authenticated'){
-            return true;
-        }
+        return;
     }
 
-    window.location.href =
-    'index.html';
+    const value =
+    authCookie.split('=')[1];
+
+    if(value !== 'authenticated'){
+
+        window.location.href =
+        './index.html';
+    }
 }
 
 checkAuthentication();
 
-// DATA
+/* DATA */
 
 let videos = [];
 
 let currentCategory = 'All';
 
-// LOAD VIDEOS
+/* LOAD VIDEOS */
 
 async function loadVideos(){
 
     try{
 
         const response =
-        await fetch('links.txt');
+        await fetch('./links.txt');
+
+        if(!response.ok){
+
+            throw new Error(
+                'links.txt missing'
+            );
+        }
 
         const text =
         await response.text();
@@ -835,8 +804,11 @@ async function loadVideos(){
 
             line = line.trim();
 
-            if(!line ||
-            line.startsWith('#')){
+            if(
+                !line
+                ||
+                line.startsWith('#')
+            ){
                 return;
             }
 
@@ -852,7 +824,7 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            // Convert watch URL
+            let thumbnail = '';
 
             if(url.includes('watch?v=')){
 
@@ -860,25 +832,32 @@ async function loadVideos(){
                 new URL(url)
                 .searchParams.get('v');
 
-                url =
-                `https://www.youtube.com/embed/${id}`;
-            }
+                thumbnail =
+                `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
-            // Convert youtu.be
+                url =
+                `https://www.youtube-nocookie.com/embed/${id}`;
+            }
 
             if(url.includes('youtu.be/')){
 
                 const id =
-                url.split('youtu.be/')[1];
+                url
+                .split('youtu.be/')[1]
+                .split('?')[0];
+
+                thumbnail =
+                `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
                 url =
-                `https://www.youtube.com/embed/${id}`;
+                `https://www.youtube-nocookie.com/embed/${id}`;
             }
 
             videos.push({
                 url,
                 title,
-                category
+                category,
+                thumbnail
             });
 
         });
@@ -897,7 +876,7 @@ async function loadVideos(){
     }
 }
 
-// SUBJECTS
+/* SUBJECTS */
 
 function renderSubjects(){
 
@@ -955,7 +934,7 @@ function renderSubjects(){
     });
 }
 
-// VIDEOS
+/* VIDEOS */
 
 function renderVideos(){
 
@@ -977,9 +956,7 @@ function renderVideos(){
         const matchCategory =
 
         currentCategory === 'All'
-
         ||
-
         video.category === currentCategory;
 
         const matchSearch =
@@ -1008,9 +985,17 @@ function renderVideos(){
 
             <div class="thumbnail">
 
-                <iframe
-                src="${video.url}">
-                </iframe>
+                <img
+                src="${video.thumbnail}"
+                alt="${video.title}"
+                loading="lazy"
+                draggable="false"
+                onerror="
+                this.onerror=null;
+                this.src='https://img.youtube.com/vi/default/hqdefault.jpg';
+                ">
+
+                <div class="thumbnail-overlay"></div>
 
                 <div class="play-btn">
                     <i class="fas fa-play"></i>
@@ -1035,7 +1020,7 @@ function renderVideos(){
     });
 }
 
-// PLAY VIDEO
+/* PLAY VIDEO */
 
 function playVideo(video){
 
@@ -1063,9 +1048,15 @@ function playVideo(video){
 
     '&fs=0' +
 
+    '&playsinline=1' +
+
     '&iv_load_policy=3' +
 
-    '&playsinline=1';
+    '&cc_load_policy=0' +
+
+    '&showinfo=0' +
+
+    '&origin=' + location.origin;
 
     document
     .getElementById('videoFrame')
@@ -1087,7 +1078,7 @@ function playVideo(video){
     });
 }
 
-// BACK
+/* BACK */
 
 function goBack(){
 
@@ -1104,7 +1095,7 @@ function goBack(){
     .src = '';
 }
 
-// SEARCH
+/* SEARCH */
 
 document
 .getElementById('searchInput')
@@ -1113,45 +1104,57 @@ document
 renderVideos
 );
 
-// Disable Right Click
+/* LOGOUT */
+
+function logout(){
+
+    document.cookie =
+    'zuhara_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
+/* PROTECTION */
 
 document.addEventListener(
 'contextmenu',
-e=>{
-    e.preventDefault();
-});
+e=>e.preventDefault()
+);
 
-// Disable shortcuts
+document.addEventListener(
+'dragstart',
+e=>e.preventDefault()
+);
 
 document.addEventListener(
 'keydown',
 e=>{
 
-    // F12
-
     if(e.key === 'F12'){
+
         e.preventDefault();
     }
-
-    // Ctrl+U
-
-    if(e.ctrlKey &&
-    e.key.toLowerCase() === 'u'){
-        e.preventDefault();
-    }
-
-    // Ctrl+Shift+I
 
     if(
-        e.ctrlKey &&
-        e.shiftKey &&
+        e.ctrlKey
+        &&
+        e.shiftKey
+        &&
         e.key.toLowerCase() === 'i'
     ){
+
+        e.preventDefault();
+    }
+
+    if(
+        e.ctrlKey
+        &&
+        e.key.toLowerCase() === 'u'
+    ){
+
         e.preventDefault();
     }
 });
 
-// START
+/* START */
 
 loadVideos();
 
@@ -1159,4 +1162,3 @@ loadVideos();
 
 </body>
 </html>
-
