@@ -398,28 +398,14 @@ body{
     background:#000;
 }
 
-.thumbnail iframe{
+.thumbnail img{
 
     width:100%;
     height:100%;
 
-    border:none;
+    object-fit:cover;
 
-    pointer-events:none;
-}
-
-.thumbnail::after{
-
-    content:'';
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(to top,
-    rgba(0,0,0,0.35),
-    transparent);
+    display:block;
 }
 
 .play-btn{
@@ -595,20 +581,6 @@ body{
     color:var(--muted);
 }
 
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-
-    width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#c4d5f0;
-
-    border-radius:20px;
-}
-
 /* MOBILE */
 
 @media(max-width:950px){
@@ -690,8 +662,6 @@ body{
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
 
     <div class="logo">
@@ -727,8 +697,6 @@ body{
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
-
     <div class="sidebar">
 
         <div class="sidebar-title">
@@ -739,11 +707,7 @@ body{
 
     </div>
 
-    <!-- CONTENT -->
-
     <div class="content">
-
-        <!-- HOME -->
 
         <div id="homePage">
 
@@ -755,8 +719,6 @@ body{
             id="videoGrid"></div>
 
         </div>
-
-        <!-- PLAYER -->
 
         <div class="player-page"
         id="playerPage">
@@ -802,8 +764,6 @@ body{
 
 <script>
 
-// AUTH
-
 function checkAuthentication(){
 
     const cookies =
@@ -829,13 +789,9 @@ function checkAuthentication(){
 
 checkAuthentication();
 
-// DATA
-
 let videos = [];
 
 let currentCategory = 'All';
-
-// LOAD VIDEOS
 
 async function loadVideos(){
 
@@ -876,8 +832,6 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            // WATCH URL
-
             if(url.includes('watch?v=')){
 
                 const id =
@@ -887,8 +841,6 @@ async function loadVideos(){
                 url =
                 `https://www.youtube-nocookie.com/embed/${id}`;
             }
-
-            // SHORT URL
 
             if(url.includes('youtu.be/')){
 
@@ -920,8 +872,6 @@ async function loadVideos(){
         '<h2>Could not load videos</h2>';
     }
 }
-
-// SUBJECTS
 
 function renderSubjects(){
 
@@ -979,8 +929,6 @@ function renderSubjects(){
     });
 }
 
-// RENDER VIDEOS
-
 function renderVideos(){
 
     const grid =
@@ -1027,13 +975,19 @@ function renderVideos(){
         card.onclick =
         ()=>playVideo(video);
 
+        const videoId =
+        video.url.split('/embed/')[1];
+
+        const thumbnail =
+        `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
         card.innerHTML = `
 
             <div class="thumbnail">
 
-                <iframe
-                src="${video.url}">
-                </iframe>
+                <img
+                src="${thumbnail}"
+                alt="${video.title}">
 
                 <div class="play-btn">
                     <i class="fas fa-play"></i>
@@ -1057,8 +1011,6 @@ function renderVideos(){
         grid.appendChild(card);
     });
 }
-
-// PLAY VIDEO
 
 function playVideo(video){
 
@@ -1090,7 +1042,9 @@ function playVideo(video){
 
     '&playsinline=1' +
 
-    '&cc_load_policy=0';
+    '&cc_load_policy=0' +
+
+    '&showinfo=0';
 
     document
     .getElementById('videoFrame')
@@ -1112,8 +1066,6 @@ function playVideo(video){
     });
 }
 
-// BACK
-
 function goBack(){
 
     document
@@ -1129,8 +1081,6 @@ function goBack(){
     .src = '';
 }
 
-// SEARCH
-
 document
 .getElementById('searchInput')
 .addEventListener(
@@ -1138,15 +1088,11 @@ document
 renderVideos
 );
 
-// DISABLE RIGHT CLICK
-
 document.addEventListener(
 'contextmenu',
 e=>{
     e.preventDefault();
 });
-
-// DISABLE SHORTCUTS
 
 document.addEventListener(
 'keydown',
@@ -1174,8 +1120,6 @@ e=>{
         e.preventDefault();
     }
 });
-
-// START
 
 loadVideos();
 
