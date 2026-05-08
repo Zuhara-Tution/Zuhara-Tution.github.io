@@ -1,13 +1,30 @@
 https://www.youtube.com/embed/EJMj-VBdkX4|Real Numbers Part-1|Class-10|Maths
-https://www.youtube.com/embed/abc123xyz|Polynomials Introduction|Class-10|Maths
-https://www.youtube.com/embed/def456uvw|Trigonometry Basics|Class-10|Maths
 
-https://www.youtube.com/embed/ghi789rst|Fractions Part-1|Class-5|Maths
-https://www.youtube.com/embed/jkl321opq|Decimals Explained|Class-5|Maths
-https://www.youtube.com/embed/mno654lmn|Science Chapter-1|Class-5|Science
+https://www.youtube.com/live/quu5ZWM1im4?si=VHB6JXpjI3S-Mxqd | Demo Live Class | 10 | All
 
-https://www.youtube.com/embed/pqr987stu|Photosynthesis|Class-8|Biology
-https://www.youtube.com/embed/vwx741ghi|Motion and Force|Class-8|Physics
+https://www.youtube.com/watch?v=UFvHmZOEEXA | Plus Two Intro Class | 12 | All
+https://www.youtube.com/watch?v=sjUyYPPlZJo | Learning Orientation | 11 | All
 
-https://www.youtube.com/embed/zzz111aaa|English Grammar Basics|Class-7|English
-https://www.youtube.com/embed/bbb222ccc|History Chapter-2|Class-7|Social
+# CLASS 10 - Maths
+https://www.youtube.com/watch?v=example1 | Algebra Basics | 10 | Maths
+https://www.youtube.com/watch?v=example2 | Trigonometry Intro | 10 | Maths
+
+# CLASS 10 - Science
+https://www.youtube.com/watch?v=example3 | Physics Basics | 10 | Science
+https://www.youtube.com/watch?v=example4 | Chemistry Intro | 10 | Science
+
+# CLASS 11 - Maths
+https://www.youtube.com/watch?v=example5 | Functions | 11 | Maths
+https://www.youtube.com/watch?v=example6 | Limits Basics | 11 | Maths
+
+# CLASS 11 - Physics
+https://www.youtube.com/watch?v=example7 | Motion | 11 | Physics
+https://www.youtube.com/watch?v=example8 | Laws of Motion | 11 | Physics
+
+# CLASS 12 - Maths
+https://www.youtube.com/watch?v=example9 | Calculus Intro | 12 | Maths
+https://www.youtube.com/watch?v=example10 | Integration | 12 | Maths
+
+# CLASS 12 - Physics
+https://www.youtube.com/watch?v=example11 | Electrostatics | 12 | Physics
+https://www.youtube.com/watch?v=example12 | Current Electricity | 12 | Physics
