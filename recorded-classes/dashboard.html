@@ -83,7 +83,7 @@ body{
     height:82px;
 
     background:
-    rgba(255,255,255,0.78);
+    rgba(255,255,255,0.82);
 
     backdrop-filter:blur(18px);
 
@@ -96,7 +96,7 @@ body{
 
     justify-content:space-between;
 
-    padding:0 26px;
+    padding:0 28px;
 
     z-index:999;
 }
@@ -109,15 +109,15 @@ body{
 
     gap:14px;
 
-    font-size:1.15rem;
-
     font-weight:800;
+
+    font-size:1.1rem;
 }
 
 .logo-icon{
 
-    width:52px;
-    height:52px;
+    width:50px;
+    height:50px;
 
     border-radius:18px;
 
@@ -126,18 +126,18 @@ body{
     var(--blue),
     var(--blue2));
 
+    color:white;
+
     display:flex;
 
     align-items:center;
 
     justify-content:center;
 
-    color:white;
-
-    font-size:1.3rem;
+    font-size:1.2rem;
 
     box-shadow:
-    0 10px 30px rgba(37,99,235,0.25);
+    0 10px 30px rgba(59,130,246,0.25);
 }
 
 .search-box{
@@ -146,7 +146,7 @@ body{
 
     max-width:540px;
 
-    margin:0 28px;
+    margin:0 30px;
 
     position:relative;
 }
@@ -155,19 +155,21 @@ body{
 
     width:100%;
 
-    padding:16px 22px;
+    padding:16px 20px;
 
     border-radius:18px;
 
     border:1px solid var(--border);
 
+    outline:none;
+
     background:white;
 
-    outline:none;
+    color:var(--text);
 
     font-size:0.95rem;
 
-    color:var(--text);
+    transition:0.25s;
 
     box-shadow:
     0 5px 20px rgba(15,23,42,0.04);
@@ -178,7 +180,7 @@ body{
     border-color:var(--blue);
 
     box-shadow:
-    0 0 0 4px rgba(79,140,255,0.12);
+    0 0 0 4px rgba(59,130,246,0.12);
 }
 
 .search-box i{
@@ -202,15 +204,15 @@ body{
 
     text-decoration:none;
 
-    background:white;
-
     color:var(--text);
+
+    background:white;
 
     border:1px solid var(--border);
 
-    font-weight:600;
-
     transition:0.25s;
+
+    font-weight:600;
 
     box-shadow:
     0 5px 20px rgba(15,23,42,0.04);
@@ -246,9 +248,9 @@ body{
     height:calc(100vh - 82px);
 
     background:
-    rgba(255,255,255,0.72);
+    rgba(255,255,255,0.75);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(18px);
 
     border-right:
     1px solid var(--border);
@@ -321,7 +323,7 @@ body{
     color:white;
 
     box-shadow:
-    0 10px 30px rgba(37,99,235,0.20);
+    0 10px 30px rgba(59,130,246,0.20);
 }
 
 /* CONTENT */
@@ -366,9 +368,9 @@ body{
 
     overflow:hidden;
 
-    border:1px solid var(--border);
-
     cursor:pointer;
+
+    border:1px solid var(--border);
 
     transition:0.3s;
 
@@ -388,9 +390,9 @@ body{
 
     aspect-ratio:16/9;
 
-    position:relative;
-
     overflow:hidden;
+
+    position:relative;
 
     background:#dbeafe;
 }
@@ -409,7 +411,7 @@ body{
 
 .video-card:hover .thumbnail img{
 
-    transform:scale(1.06);
+    transform:scale(1.05);
 }
 
 .thumbnail::after{
@@ -441,7 +443,7 @@ body{
     border-radius:50%;
 
     background:
-    rgba(255,255,255,0.20);
+    rgba(255,255,255,0.18);
 
     backdrop-filter:blur(12px);
 
@@ -507,9 +509,6 @@ body{
     font-weight:600;
 
     transition:0.25s;
-
-    box-shadow:
-    0 5px 20px rgba(15,23,42,0.04);
 }
 
 .back-btn:hover{
@@ -564,6 +563,8 @@ body{
     color:white;
 
     font-size:0.82rem;
+
+    z-index:20;
 }
 
 .video-details{
@@ -748,9 +749,9 @@ body{
 
                 <iframe
                 id="videoFrame"
-                allow="autoplay; encrypted-media"
                 allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin">
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; encrypted-media">
                 </iframe>
 
                 <div class="video-watermark">
@@ -858,7 +859,7 @@ async function loadVideos(){
                 .searchParams.get('v');
 
                 thumbnail =
-                `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+                `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
                 url =
                 `https://www.youtube-nocookie.com/embed/${id}`;
@@ -872,7 +873,7 @@ async function loadVideos(){
                 .split('?')[0];
 
                 thumbnail =
-                `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+                `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
                 url =
                 `https://www.youtube-nocookie.com/embed/${id}`;
@@ -884,6 +885,7 @@ async function loadVideos(){
                 category,
                 thumbnail
             });
+
         });
 
         renderSubjects();
@@ -912,16 +914,16 @@ function renderSubjects(){
     ];
 
     const container =
-    document.getElementById(
-        'subjectList'
-    );
+    document
+    .getElementById('subjectList');
 
     container.innerHTML = '';
 
     subjects.forEach(subject=>{
 
         const btn =
-        document.createElement('button');
+        document
+        .createElement('button');
 
         btn.className =
         'subject-btn';
@@ -959,9 +961,8 @@ function renderSubjects(){
 function renderVideos(){
 
     const grid =
-    document.getElementById(
-        'videoGrid'
-    );
+    document
+    .getElementById('videoGrid');
 
     const search =
     document
@@ -986,17 +987,16 @@ function renderVideos(){
         .toLowerCase()
         .includes(search);
 
-        return (
-            matchCategory
-            &&
-            matchSearch
-        );
+        return matchCategory
+        &&
+        matchSearch;
     });
 
     filtered.forEach(video=>{
 
         const card =
-        document.createElement('div');
+        document
+        .createElement('div');
 
         card.className =
         'video-card';
@@ -1006,35 +1006,35 @@ function renderVideos(){
 
         card.innerHTML = `
 
-        <div class="thumbnail">
+            <div class="thumbnail">
 
-            <img
-            src="${video.thumbnail}"
-            alt="${video.title}"
-            loading="lazy"
-            draggable="false"
-            onerror="
-            this.onerror=null;
-            this.src='https://img.youtube.com/vi/default/hqdefault.jpg';
-            ">
+                <img
+                src="${video.thumbnail}"
+                alt="${video.title}"
+                loading="lazy"
+                draggable="false"
+                onerror="
+                this.onerror=null;
+                this.src='https://i.imgur.com/8Km9tLL.png';
+                ">
 
-            <div class="play-btn">
-                <i class="fas fa-play"></i>
+                <div class="play-btn">
+                    <i class="fas fa-play"></i>
+                </div>
+
             </div>
 
-        </div>
+            <div class="video-info">
 
-        <div class="video-info">
+                <div class="video-title">
+                    ${video.title}
+                </div>
 
-            <div class="video-title">
-                ${video.title}
+                <div class="video-category">
+                    ${video.category}
+                </div>
+
             </div>
-
-            <div class="video-category">
-                ${video.category}
-            </div>
-
-        </div>
         `;
 
         grid.appendChild(card);
@@ -1071,9 +1071,7 @@ function playVideo(video){
 
     '&iv_load_policy=3' +
 
-    '&cc_load_policy=0' +
-
-    '&showinfo=0';
+    '&cc_load_policy=0';
 
     document
     .getElementById('videoFrame')
@@ -1127,6 +1125,33 @@ document.addEventListener(
 'contextmenu',
 e=>e.preventDefault()
 );
+
+document.addEventListener(
+'keydown',
+e=>{
+
+    if(e.key === 'F12'){
+        e.preventDefault();
+    }
+
+    if(
+        e.ctrlKey
+        &&
+        e.shiftKey
+        &&
+        e.key.toLowerCase() === 'i'
+    ){
+        e.preventDefault();
+    }
+
+    if(
+        e.ctrlKey
+        &&
+        e.key.toLowerCase() === 'u'
+    ){
+        e.preventDefault();
+    }
+});
 
 loadVideos();
 
