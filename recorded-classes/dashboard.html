@@ -1,442 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Recorded Classes - Zuhara Tuition Center</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zuhara Recorded Classes</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
-            min-height: 100vh;
+        body{
+            font-family:'Inter',sans-serif;
+            background:linear-gradient(135deg,#f0f4f8 0%,#e8edf2 100%);
+            min-height:100vh;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .header{
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(20px);
+            padding:1rem 2rem;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:1rem;
+            border-bottom:1px solid rgba(255,255,255,0.8);
+            position:sticky;
+            top:0;
+            z-index:100;
         }
 
-        .header h1 {
-            font-size: 1.3rem;
-            color: #1e4a6b;
+        .header h1{
+            font-size:1.3rem;
+            color:#1e4a6b;
         }
 
-        .header h1 i {
-            color: #2c7a6e;
-            margin-right: 0.5rem;
+        .header h1 i{
+            color:#2c7a6e;
+            margin-right:0.5rem;
         }
 
-        .logout-btn {
-            background: rgba(44, 122, 110, 0.1);
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            color: #2c7a6e;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
+        .header-actions{
+            display:flex;
+            gap:0.7rem;
+            align-items:center;
         }
 
-        .logout-btn:hover {
-            background: rgba(44, 122, 110, 0.2);
+        .refresh-btn,
+        .logout-btn{
+            background:rgba(44,122,110,0.1);
+            padding:0.6rem 1rem;
+            border-radius:2rem;
+            border:none;
+            text-decoration:none;
+            color:#2c7a6e;
+            font-size:0.85rem;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.2s;
         }
 
-        .refresh-btn {
-            background: rgba(44, 122, 110, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            border: none;
-            color: #2c7a6e;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.2s;
+        .refresh-btn:hover,
+        .logout-btn:hover{
+            background:rgba(44,122,110,0.2);
         }
 
-        .refresh-btn:hover {
-            background: rgba(44, 122, 110, 0.2);
+        .container{
+            max-width:1300px;
+            margin:auto;
+            padding:1.5rem;
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 2rem;
+        .player-section{
+            background:rgba(0,0,0,0.08);
+            border-radius:1.5rem;
+            overflow:hidden;
+            margin-bottom:2rem;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .player-section {
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 1.5rem;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .player-section.hidden{
+            display:none;
         }
 
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: #000;
+        .video-wrapper{
+            position:relative;
+            width:100%;
+            padding-bottom:56.25%;
+            background:#000;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+        .video-wrapper iframe{
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            border:none;
         }
 
-        .video-info {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            padding: 1rem 1.5rem;
+        .video-info{
+            padding:1rem 1.5rem;
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(10px);
         }
 
-        .video-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1e4a6b;
+        .video-title{
+            font-size:1rem;
+            font-weight:700;
+            color:#1e4a6b;
         }
 
-        .no-video-selected {
-            text-align: center;
-            padding: 1.5rem;
-            color: #5a7a94;
+        .gallery-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:1rem;
+            flex-wrap:wrap;
+            gap:1rem;
         }
 
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        .gallery-title{
+            font-size:1.3rem;
+            font-weight:700;
+            color:#1e4a6b;
         }
 
-        .gallery-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1e4a6b;
+        .video-count{
+            background:rgba(255,255,255,0.7);
+            padding:0.4rem 0.8rem;
+            border-radius:2rem;
+            font-size:0.8rem;
+            color:#5a7a94;
         }
 
-        .video-count {
-            font-size: 0.8rem;
-            color: #5a7a94;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 0.3rem 0.8rem;
-            border-radius: 2rem;
+        .category-section{
+            margin-bottom:2rem;
         }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
+        .category-title{
+            margin-bottom:1rem;
+            color:#1e4a6b;
+            font-size:1.2rem;
+            font-weight:700;
         }
 
-        .video-card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            border-radius: 1.2rem;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.7);
+        .video-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+            gap:1.2rem;
         }
 
-        .video-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        .video-card{
+            background:rgba(255,255,255,0.7);
+            backdrop-filter:blur(16px);
+            border-radius:1.2rem;
+            overflow:hidden;
+            cursor:pointer;
+            transition:0.3s;
+            border:1px solid rgba(255,255,255,0.7);
         }
 
-        .video-card.active {
-            border: 2px solid #2c7a6e;
-            background: rgba(44, 122, 110, 0.15);
+        .video-card:hover{
+            transform:translateY(-5px);
+            background:rgba(255,255,255,0.9);
+            box-shadow:0 15px 30px rgba(0,0,0,0.1);
         }
 
-        .card-thumbnail {
-            background: linear-gradient(135deg, #1e4a6b, #2c7a6e);
-            padding: 1.8rem;
-            text-align: center;
-            position: relative;
+        .video-card.active{
+            border:2px solid #2c7a6e;
+            background:rgba(44,122,110,0.15);
         }
 
-        .card-thumbnail i {
-            font-size: 2.8rem;
-            color: white;
-            opacity: 0.9;
+        .card-thumbnail{
+            background:linear-gradient(135deg,#1e4a6b,#2c7a6e);
+            padding:2rem;
+            text-align:center;
+            position:relative;
         }
 
-        .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.6);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s;
+        .card-thumbnail i{
+            font-size:3rem;
+            color:white;
         }
 
-        .video-card:hover .play-overlay {
-            opacity: 1;
+        .play-overlay{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:55px;
+            height:55px;
+            border-radius:50%;
+            background:rgba(0,0,0,0.5);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            opacity:0;
+            transition:0.2s;
         }
 
-        .play-overlay i {
-            font-size: 1.3rem;
-            margin-left: 3px;
+        .video-card:hover .play-overlay{
+            opacity:1;
         }
 
-        .card-info {
-            padding: 0.9rem;
+        .play-overlay i{
+            font-size:1.2rem;
+            margin-left:4px;
         }
 
-        .card-info h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #1e4a6b;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .card-info{
+            padding:1rem;
         }
 
-        .card-info p {
-            font-size: 0.7rem;
-            color: #5a7a94;
-            margin-top: 0.3rem;
+        .card-info h4{
+            color:#1e4a6b;
+            font-size:0.95rem;
+            margin-bottom:0.5rem;
         }
 
-        .loading-state, .error-state {
-            text-align: center;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(16px);
-            border-radius: 1.5rem;
-            grid-column: 1 / -1;
+        .card-info p{
+            color:#5a7a94;
+            font-size:0.8rem;
         }
 
-        .loading-state i, .error-state i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .loading-state,
+        .error-state{
+            text-align:center;
+            padding:3rem;
+            background:rgba(255,255,255,0.6);
+            border-radius:1rem;
         }
 
-        .loading-state {
-            color: #2c7a6e;
+        .loading-state{
+            color:#2c7a6e;
         }
 
-        .error-state {
-            color: #d9534f;
+        .error-state{
+            color:#d9534f;
         }
 
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.7rem;
-            color: #5a7a94;
+        .footer{
+            margin-top:2rem;
+            text-align:center;
+            font-size:0.75rem;
+            color:#5a7a94;
+            padding:1rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+        @media(max-width:768px){
+
+            .container{
+                padding:1rem;
             }
-            .video-grid {
-                grid-template-columns: 1fr;
+
+            .video-grid{
+                grid-template-columns:1fr;
             }
+
         }
+
     </style>
 </head>
+
 <body>
+
     <div class="header">
-        <h1><i class="fas fa-chalkboard-teacher"></i> Zuhara Recorded Classes</h1>
-        <div>
-            <button class="refresh-btn" onclick="reloadVideos()"><i class="fas fa-sync-alt"></i> Refresh</button>
-            <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+        <h1>
+            <i class="fas fa-chalkboard-teacher"></i>
+            Zuhara Recorded Classes
+        </h1>
+
+        <div class="header-actions">
+
+            <button class="refresh-btn" onclick="reloadVideos()">
+                <i class="fas fa-sync-alt"></i>
+                Refresh
+            </button>
+
+            <a href="logout.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+
         </div>
+
     </div>
 
     <div class="container">
-        <div class="player-section">
+
+        <!-- VIDEO PLAYER -->
+
+        <div class="player-section hidden" id="playerSection">
+
             <div class="video-wrapper">
-                <iframe id="videoFrame" src="" allowfullscreen></iframe>
+
+                <iframe
+                    id="videoFrame"
+                    src=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+
             </div>
-            <div class="video-info" id="videoInfo">
-                <div class="no-video-selected">
-                    <i class="fas fa-play-circle" style="font-size: 2rem; opacity: 0.5;"></i>
-                    <p style="margin-top: 0.5rem;">Select a video from the library below</p>
-                </div>
-            </div>
+
+            <div class="video-info" id="videoInfo"></div>
+
         </div>
+
+        <!-- HEADER -->
 
         <div class="gallery-header">
-            <div class="gallery-title"><i class="fas fa-video"></i> Video Library</div>
-            <div class="video-count" id="videoCount">Loading...</div>
+
+            <div class="gallery-title">
+                <i class="fas fa-video"></i>
+                Video Library
+            </div>
+
+            <div class="video-count" id="videoCount">
+                Loading...
+            </div>
+
         </div>
 
-        <div class="video-grid" id="videoGrid">
+        <!-- VIDEO GRID -->
+
+        <div id="videoGrid">
+
             <div class="loading-state">
+
                 <i class="fas fa-spinner fa-pulse"></i>
-                <p>Loading videos from links.txt...</p>
+
+                <p style="margin-top:1rem;">
+                    Loading videos...
+                </p>
+
             </div>
+
         </div>
 
         <div class="footer">
-            <i class="fas fa-lock"></i> Secure Student Portal | Zuhara Tuition Center
+            <i class="fas fa-lock"></i>
+            Secure Student Portal | Zuhara Tuition Center
         </div>
+
     </div>
 
-    <script>
-        // Check authentication
-        function checkAuthentication() {
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                const [name, value] = cookie.trim().split('=');
-                if (name === 'zuhara_auth' && value === 'authenticated') return true;
-            }
-            window.location.href = 'index.html';
-            return false;
-        }
-        checkAuthentication();
+<script>
 
-        let videos = [];
-        let currentVideo = 0;
+    // AUTH CHECK
 
-        // Function to load videos from links.txt
-        async function loadVideosFromFile() {
-            const grid = document.getElementById('videoGrid');
-            const countSpan = document.getElementById('videoCount');
-            
-            grid.innerHTML = `<div class="loading-state"><i class="fas fa-spinner fa-pulse"></i><p>Loading videos from links.txt...</p></div>`;
-            
-            try {
-                const response = await fetch('links.txt');
-                if (!response.ok) {
-                    throw new Error('links.txt file not found');
-                }
-                const text = await response.text();
-                
-                // Parse each line: EMBED_URL|Title
-                const lines = text.split('\n');
-                videos = [];
-                
-                for (let line of lines) {
-                    line = line.trim();
-                    if (line === '' || line.startsWith('#')) continue; // Skip empty lines and comments
-                    
-                    const separatorIndex = line.indexOf('|');
-                    if (separatorIndex !== -1) {
-                        const embedUrl = line.substring(0, separatorIndex).trim();
-                        let title = line.substring(separatorIndex + 1).trim();
-                        
-                        // If no title, extract from URL
-                        if (!title) {
-                            title = 'Video ' + (videos.length + 1);
-                        }
-                        
-                        videos.push({
-                            embedUrl: embedUrl,
-                            name: title
-                        });
-                    } else {
-                        // If no separator, treat whole line as URL
-                        videos.push({
-                            embedUrl: line,
-                            name: 'Video ' + (videos.length + 1)
-                        });
-                    }
-                }
-                
-                if (videos.length === 0) {
-                    grid.innerHTML = `<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>No videos found in links.txt</p><p style="font-size:0.8rem;">Format: EMBED_URL|Video Title (one per line)</p></div>`;
-                    countSpan.innerHTML = '0 videos';
-                } else {
-                    renderVideoGrid();
-                    playVideo(0);
-                    countSpan.innerHTML = `${videos.length} ${videos.length === 1 ? 'video' : 'videos'}`;
-                }
-                
-            } catch (error) {
-                console.error('Error loading links.txt:', error);
-                grid.innerHTML = `<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>Could not load links.txt</p><p style="font-size:0.8rem;">Please make sure the file exists in the same folder.</p><p style="font-size:0.8rem; margin-top:0.5rem;">Format: EMBED_URL|Video Title (one per line)</p></div>`;
-                countSpan.innerHTML = 'Error';
+    function checkAuthentication(){
+
+        const cookies = document.cookie.split(';');
+
+        for(let cookie of cookies){
+
+            const [name,value] = cookie.trim().split('=');
+
+            if(name === 'zuhara_auth' && value === 'authenticated'){
+                return true;
             }
+
         }
 
-        // Render video grid
-        function renderVideoGrid() {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = '';
-            
-            videos.forEach((video, index) => {
+        window.location.href = 'index.html';
+
+        return false;
+    }
+
+    checkAuthentication();
+
+    let videos = [];
+    let currentVideo = -1;
+
+    // LOAD VIDEOS
+
+    async function loadVideosFromFile(){
+
+        const grid = document.getElementById('videoGrid');
+        const countSpan = document.getElementById('videoCount');
+
+        grid.innerHTML = `
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-pulse"></i>
+                <p style="margin-top:1rem;">Loading videos...</p>
+            </div>
+        `;
+
+        try{
+
+            const response = await fetch('links.txt');
+
+            if(!response.ok){
+                throw new Error('links.txt not found');
+            }
+
+            const text = await response.text();
+
+            const lines = text.split('\n');
+
+            videos = [];
+
+            for(let line of lines){
+
+                line = line.trim();
+
+                if(line === '' || line.startsWith('#')){
+                    continue;
+                }
+
+                const parts = line.split('|');
+
+                let embedUrl = parts[0]?.trim() || '';
+                let title = parts[1]?.trim() || `Video ${videos.length+1}`;
+                let category = parts[2]?.trim() || 'General';
+
+                // WATCH URL -> EMBED URL
+
+                if(embedUrl.includes('youtube.com/watch?v=')){
+
+                    const videoId = new URL(embedUrl).searchParams.get('v');
+
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                }
+
+                if(embedUrl.includes('youtu.be/')){
+
+                    const videoId = embedUrl.split('youtu.be/')[1];
+
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                }
+
+                videos.push({
+                    embedUrl,
+                    name:title,
+                    category
+                });
+
+            }
+
+            if(videos.length === 0){
+
+                grid.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+
+                        <p style="margin-top:1rem;">
+                            No videos found in links.txt
+                        </p>
+                    </div>
+                `;
+
+                countSpan.innerHTML = '0 Videos';
+
+                return;
+            }
+
+            renderVideoGrid();
+
+            countSpan.innerHTML =
+                `${videos.length} Videos`;
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            grid.innerHTML = `
+                <div class="error-state">
+
+                    <i class="fas fa-exclamation-triangle"></i>
+
+                    <p style="margin-top:1rem;">
+                        Could not load links.txt
+                    </p>
+
+                </div>
+            `;
+
+            countSpan.innerHTML = 'Error';
+
+        }
+
+    }
+
+    // RENDER GRID
+
+    function renderVideoGrid(){
+
+        const grid = document.getElementById('videoGrid');
+
+        grid.innerHTML = '';
+
+        const groupedVideos = {};
+
+        videos.forEach((video,index)=>{
+
+            if(!groupedVideos[video.category]){
+                groupedVideos[video.category] = [];
+            }
+
+            groupedVideos[video.category].push({
+                ...video,
+                originalIndex:index
+            });
+
+        });
+
+        Object.keys(groupedVideos).forEach(category=>{
+
+            const section = document.createElement('div');
+
+            section.className = 'category-section';
+
+            section.innerHTML = `
+                <div class="category-title">
+                    <i class="fas fa-folder-open"></i>
+                    ${category}
+                </div>
+
+                <div class="video-grid"></div>
+            `;
+
+            const categoryGrid =
+                section.querySelector('.video-grid');
+
+            groupedVideos[category].forEach(video=>{
+
                 const card = document.createElement('div');
+
                 card.className = 'video-card';
-                if (index === currentVideo) card.classList.add('active');
-                card.onclick = () => playVideo(index);
-                
+
+                if(video.originalIndex === currentVideo){
+                    card.classList.add('active');
+                }
+
+                card.onclick = () => playVideo(video.originalIndex);
+
                 card.innerHTML = `
                     <div class="card-thumbnail">
+
                         <i class="fas fa-play-circle"></i>
+
                         <div class="play-overlay">
                             <i class="fas fa-play"></i>
                         </div>
+
                     </div>
+
                     <div class="card-info">
-                        <h4 title="${video.name}">${video.name.length > 35 ? video.name.substring(0, 35) + '...' : video.name}</h4>
-                        <p><i class="fas fa-video"></i> Click to watch</p>
+
+                        <h4 title="${video.name}">
+                            ${video.name}
+                        </h4>
+
+                        <p>
+                            <i class="fas fa-video"></i>
+                            Click to watch
+                        </p>
+
                     </div>
                 `;
-                
-                grid.appendChild(card);
+
+                categoryGrid.appendChild(card);
+
             });
+
+            grid.appendChild(section);
+
+        });
+
+    }
+
+    // PLAY VIDEO
+
+    function playVideo(index){
+
+        if(index < 0 || index >= videos.length){
+            return;
         }
 
-        // Play selected video
-        function playVideo(index) {
-            if (!videos.length || index < 0 || index >= videos.length) return;
-            
-            currentVideo = index;
-            const video = videos[index];
-            
-            document.getElementById('videoFrame').src = video.embedUrl;
-            document.getElementById('videoInfo').innerHTML = `
-                <div class="video-title"><i class="fas fa-play-circle" style="color:#2c7a6e;"></i> ${video.name}</div>
+        currentVideo = index;
+
+        const video = videos[index];
+
+        document.getElementById('playerSection')
+            .classList.remove('hidden');
+
+        document.getElementById('videoFrame')
+            .src = video.embedUrl;
+
+        document.getElementById('videoInfo')
+            .innerHTML = `
+                <div class="video-title">
+
+                    <i class="fas fa-play-circle"
+                       style="color:#2c7a6e;"></i>
+
+                    ${video.name}
+
+                </div>
             `;
-            
-            document.querySelectorAll('.video-card').forEach((card, i) => {
-                card.classList.toggle('active', i === index);
+
+        document.querySelectorAll('.video-card')
+            .forEach((card,i)=>{
+
+                card.classList.toggle(
+                    'active',
+                    i === index
+                );
+
             });
-        }
 
-        // Refresh videos
-        function reloadVideos() {
-            loadVideosFromFile();
-        }
+        window.scrollTo({
+            top:0,
+            behavior:'smooth'
+        });
 
-        // Load videos on page load
+    }
+
+    // REFRESH
+
+    function reloadVideos(){
         loadVideosFromFile();
-    </script>
+    }
+
+    // INITIAL LOAD
+
+    loadVideosFromFile();
+
+</script>
+
 </body>
 </html>
