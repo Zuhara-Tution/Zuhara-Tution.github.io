@@ -459,49 +459,113 @@ body{
     </div>
 
 </div>
-
 <script>
 
 /*
-===================================
-GITHUB PAGES SIMPLE AUTH
-===================================
+========================================
+FIXED AUTH SYSTEM FOR GITHUB PAGES
+========================================
+
+PROBLEM:
+Your old code redirects to login page
+because it checks for missing auth
+incorrectly.
+
+THIS VERSION:
+- Uses index.html as login page
+- Prevents redirect loops
+- Works on GitHub Pages
+- No login.html needed
+
+========================================
 */
+
+/* AUTH CHECK */
 
 function checkAuthentication(){
 
-    const auth = localStorage.getItem('zuhara_auth');
+    /*
+    Skip auth check if already on index page
+    */
+
+    const currentPage =
+    window.location.pathname
+    .split('/')
+    .pop();
+
+    /*
+    Allow index.html
+    */
+
+    if(
+        currentPage === 'index.html'
+        ||
+        currentPage === ''
+    ){
+        return;
+    }
+
+    /*
+    Check local auth
+    */
+
+    const auth =
+    localStorage.getItem('zuhara_auth');
+
+    /*
+    Redirect to index.html ONLY
+    */
 
     if(auth !== 'authenticated'){
 
-        window.location.href = './index.html';
+        window.location.href =
+        './index.html';
+
+        return;
     }
 }
 
-checkAuthentication();
+/*
+========================================
+LOGOUT
+========================================
+*/
+
+function logout(){
+
+    localStorage.removeItem('zuhara_auth');
+
+    window.location.href =
+    './index.html';
+}
 
 /*
-===================================
-VIDEOS
-===================================
+========================================
+SAFE VIDEO LOADER
+========================================
 */
 
 let videos = [];
 
 let currentCategory = 'All';
 
-/*
-===================================
-LOAD VIDEOS
-===================================
-*/
-
 async function loadVideos(){
 
     try{
 
+        /*
+        FIXED PATH
+        */
+
         const response =
         await fetch('./links.txt');
+
+        if(!response.ok){
+
+            throw new Error(
+                'links.txt missing'
+            );
+        }
 
         const text =
         await response.text();
@@ -538,7 +602,7 @@ async function loadVideos(){
             let thumbnail = '';
 
             /*
-            CONVERT YOUTUBE LINKS
+            FIX YOUTUBE URL
             */
 
             if(url.includes('watch?v=')){
@@ -557,7 +621,8 @@ async function loadVideos(){
             if(url.includes('youtu.be/')){
 
                 const id =
-                url.split('youtu.be/')[1];
+                url.split('youtu.be/')[1]
+                .split('?')[0];
 
                 thumbnail =
                 `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
@@ -567,12 +632,12 @@ async function loadVideos(){
             }
 
             videos.push({
+
                 url,
                 title,
                 category,
                 thumbnail
             });
-
         });
 
         renderSubjects();
@@ -582,17 +647,29 @@ async function loadVideos(){
     }
     catch(error){
 
+        console.error(error);
+
         document
         .getElementById('videoGrid')
-        .innerHTML =
-        '<h2>Could not load videos</h2>';
+        .innerHTML = `
+
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            text-align:center;
+            font-weight:600;
+        ">
+            Could not load videos
+        </div>
+        `;
     }
 }
 
 /*
-===================================
-SUBJECTS
-===================================
+========================================
+RENDER SUBJECTS
+========================================
 */
 
 function renderSubjects(){
@@ -607,7 +684,9 @@ function renderSubjects(){
     ];
 
     const container =
-    document.getElementById('subjectList');
+    document.getElementById(
+        'subjectList'
+    );
 
     container.innerHTML = '';
 
@@ -647,18 +726,22 @@ function renderSubjects(){
 }
 
 /*
-===================================
+========================================
 RENDER VIDEOS
-===================================
+========================================
 */
 
 function renderVideos(){
 
     const grid =
-    document.getElementById('videoGrid');
+    document.getElementById(
+        'videoGrid'
+    );
 
     const search =
-    document.getElementById('searchInput')
+    document.getElementById(
+        'searchInput'
+    )
     .value
     .toLowerCase();
 
@@ -679,10 +762,29 @@ function renderVideos(){
         .toLowerCase()
         .includes(search);
 
-        return matchCategory
-        &&
-        matchSearch;
+        return (
+            matchCategory
+            &&
+            matchSearch
+        );
     });
+
+    if(filtered.length === 0){
+
+        grid.innerHTML = `
+
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            font-weight:600;
+        ">
+            No videos found
+        </div>
+        `;
+
+        return;
+    }
 
     filtered.forEach(video=>{
 
@@ -697,27 +799,29 @@ function renderVideos(){
 
         card.innerHTML = `
 
-            <div class="thumbnail">
+        <div class="thumbnail">
 
-                <img src="${video.thumbnail}">
+            <img
+            src="${video.thumbnail}"
+            loading="lazy">
 
-                <div class="play-btn">
-                    <i class="fas fa-play"></i>
-                </div>
-
+            <div class="play-btn">
+                <i class="fas fa-play"></i>
             </div>
 
-            <div class="video-info">
+        </div>
 
-                <div class="video-title">
-                    ${video.title}
-                </div>
+        <div class="video-info">
 
-                <div class="video-category">
-                    ${video.category}
-                </div>
-
+            <div class="video-title">
+                ${video.title}
             </div>
+
+            <div class="video-category">
+                ${video.category}
+            </div>
+
+        </div>
         `;
 
         grid.appendChild(card);
@@ -725,9 +829,9 @@ function renderVideos(){
 }
 
 /*
-===================================
+========================================
 PLAY VIDEO
-===================================
+========================================
 */
 
 function playVideo(video){
@@ -739,6 +843,10 @@ function playVideo(video){
     document
     .getElementById('playerPage')
     .style.display = 'block';
+
+    /*
+    REMOVE SHARE OPTIONS
+    */
 
     const secureUrl =
 
@@ -756,9 +864,9 @@ function playVideo(video){
 
     '&fs=0' +
 
-    '&iv_load_policy=3' +
-
     '&playsinline=1' +
+
+    '&iv_load_policy=3' +
 
     '&cc_load_policy=0';
 
@@ -783,9 +891,9 @@ function playVideo(video){
 }
 
 /*
-===================================
+========================================
 BACK
-===================================
+========================================
 */
 
 function goBack(){
@@ -804,41 +912,40 @@ function goBack(){
 }
 
 /*
-===================================
+========================================
 SEARCH
-===================================
+========================================
 */
 
 document
 .getElementById('searchInput')
 .addEventListener(
-'input',
-renderVideos
+    'input',
+    renderVideos
 );
 
 /*
-===================================
-REMOVE SHARE OPTIONS
-===================================
+========================================
+ANTI SHARE
+========================================
 */
 
 document.addEventListener(
-'contextmenu',
-e=>{
-    e.preventDefault();
-});
+    'contextmenu',
+    e=>e.preventDefault()
+);
 
 document.addEventListener(
-'dragstart',
-e=>{
-    e.preventDefault();
-});
+    'dragstart',
+    e=>e.preventDefault()
+);
 
 document.addEventListener(
 'keydown',
 e=>{
 
     if(e.key === 'F12'){
+
         e.preventDefault();
     }
 
@@ -849,6 +956,7 @@ e=>{
         &&
         e.key.toLowerCase() === 'i'
     ){
+
         e.preventDefault();
     }
 
@@ -857,6 +965,7 @@ e=>{
         &&
         e.key.toLowerCase() === 'u'
     ){
+
         e.preventDefault();
     }
 
@@ -865,15 +974,18 @@ e=>{
         &&
         e.key.toLowerCase() === 's'
     ){
+
         e.preventDefault();
     }
 });
 
 /*
-===================================
+========================================
 START
-===================================
+========================================
 */
+
+checkAuthentication();
 
 loadVideos();
 
