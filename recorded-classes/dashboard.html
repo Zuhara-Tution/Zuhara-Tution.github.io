@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zuhara Classes</title>
+<title>Zuhara Tuition Center</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
 <style>
 
@@ -18,330 +18,666 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.mi
     box-sizing:border-box;
 }
 
+:root{
+
+    --bg:#07111f;
+    --card:#0d1b2c;
+    --glass:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.08);
+
+    --blue:#3ba4ff;
+    --blue2:#1b6dff;
+
+    --text:#ffffff;
+    --muted:#8fa9c7;
+
+}
+
 body{
+
     font-family:'Inter',sans-serif;
-    background:#0f0f0f;
-    color:white;
+
+    background:
+    radial-gradient(circle at top left,#123d75 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#0f5bd7 0%,transparent 35%),
+    linear-gradient(135deg,#06101d,#081423,#0a1628);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/* GLOW BACKGROUND */
+
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(59,164,255,0.15),transparent 20%),
+    radial-gradient(circle at 80% 70%,rgba(59,164,255,0.12),transparent 25%);
+
+    z-index:-1;
+
+    filter:blur(80px);
+
 }
 
 /* HEADER */
 
 .header{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
-    height:65px;
-    background:#181818;
+
+    height:75px;
+
+    padding:0 24px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
-    padding:0 20px;
-    z-index:1000;
-    border-bottom:1px solid #222;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(7,17,31,0.55);
+
+    border-bottom:1px solid rgba(255,255,255,0.06);
+
+    z-index:999;
+
 }
 
 .logo{
+
     display:flex;
+
     align-items:center;
-    gap:12px;
+
+    gap:14px;
+
     font-size:1.2rem;
+
     font-weight:700;
+
 }
 
-.logo i{
-    color:red;
-    font-size:1.5rem;
+.logo-icon{
+
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#3ba4ff,#1b6dff);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+    0 0 20px rgba(59,164,255,0.5),
+    0 0 40px rgba(59,164,255,0.2);
+
+}
+
+.logo-icon i{
+
+    font-size:1.2rem;
+
 }
 
 .search-box{
+
     flex:1;
-    max-width:500px;
-    margin:0 20px;
+
+    max-width:520px;
+
+    margin:0 30px;
+
     position:relative;
+
 }
 
 .search-box input{
+
     width:100%;
-    padding:12px 20px;
-    border-radius:30px;
+
+    padding:14px 22px;
+
     border:none;
+
     outline:none;
-    background:#222;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.08);
+
     color:white;
+
     font-size:0.95rem;
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+}
+
+.search-box input:focus{
+
+    border:1px solid rgba(59,164,255,0.5);
+
+    box-shadow:0 0 20px rgba(59,164,255,0.3);
+
 }
 
 .search-box i{
+
     position:absolute;
+
     right:18px;
+
     top:50%;
+
     transform:translateY(-50%);
-    color:#888;
+
+    color:#8fa9c7;
+
 }
 
 .logout-btn{
-    background:#272727;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:30px;
-    cursor:pointer;
+
+    padding:12px 18px;
+
+    border-radius:16px;
+
     text-decoration:none;
-    transition:0.2s;
+
+    color:white;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:0.25s;
+
 }
 
 .logout-btn:hover{
-    background:#333;
+
+    background:rgba(59,164,255,0.15);
+
+    box-shadow:0 0 20px rgba(59,164,255,0.25);
+
 }
 
 /* LAYOUT */
 
 .layout{
+
     display:flex;
-    margin-top:65px;
+
+    margin-top:75px;
+
 }
 
 /* SIDEBAR */
 
 .sidebar{
-    width:240px;
-    background:#181818;
-    min-height:calc(100vh - 65px);
-    padding:20px 10px;
-    border-right:1px solid #222;
+
+    width:260px;
+
+    min-height:calc(100vh - 75px);
+
     position:fixed;
+
     left:0;
-    top:65px;
+    top:75px;
+
+    padding:22px 16px;
+
     overflow-y:auto;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(255,255,255,0.04);
+
+    border-right:1px solid rgba(255,255,255,0.06);
+
 }
 
-.sidebar h3{
-    color:#aaa;
-    font-size:0.85rem;
-    margin-bottom:15px;
+.sidebar-title{
+
+    color:#8fa9c7;
+
+    font-size:0.8rem;
+
+    margin-bottom:18px;
+
     padding-left:10px;
+
     text-transform:uppercase;
+
+    letter-spacing:1px;
+
 }
 
 .subject-btn{
+
     width:100%;
-    text-align:left;
-    background:none;
+
+    padding:14px 16px;
+
+    margin-bottom:10px;
+
     border:none;
+
+    border-radius:18px;
+
+    background:transparent;
+
     color:white;
-    padding:12px 14px;
-    border-radius:12px;
+
+    text-align:left;
+
     cursor:pointer;
-    margin-bottom:6px;
+
+    transition:0.25s;
+
     font-size:0.95rem;
-    transition:0.2s;
+
 }
 
 .subject-btn:hover{
-    background:#272727;
+
+    background:rgba(255,255,255,0.07);
+
 }
 
 .subject-btn.active{
-    background:white;
-    color:black;
-    font-weight:600;
+
+    background:linear-gradient(135deg,#3ba4ff,#1b6dff);
+
+    box-shadow:
+    0 0 25px rgba(59,164,255,0.35);
+
 }
 
 /* CONTENT */
 
 .content{
-    margin-left:240px;
-    width:calc(100% - 240px);
-    padding:20px;
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+    padding:30px;
+
+}
+
+/* SECTION */
+
+.section-title{
+
+    font-size:1.5rem;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+
+}
+
+/* VIDEO GRID */
+
+.video-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(320px,1fr));
+
+    gap:26px;
+
+}
+
+/* CARD */
+
+.video-card{
+
+    cursor:pointer;
+
+    transition:0.25s;
+
+}
+
+.video-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.thumbnail{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#111;
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.25);
+
+}
+
+.thumbnail iframe{
+
+    width:100%;
+    height:100%;
+
+    border:none;
+
+    pointer-events:none;
+
+}
+
+.thumbnail::after{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.4),
+    transparent);
+
+}
+
+.play-btn{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    opacity:0;
+
+    transition:0.25s;
+
+}
+
+.play-btn i{
+
+    font-size:1.5rem;
+
+}
+
+.video-card:hover .play-btn{
+
+    opacity:1;
+
+}
+
+.video-info{
+
+    padding:14px 8px;
+
+}
+
+.video-title{
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    line-height:1.5;
+
+    margin-bottom:8px;
+
+}
+
+.video-category{
+
+    font-size:0.85rem;
+
+    color:#8fa9c7;
+
 }
 
 /* PLAYER PAGE */
 
 .player-page{
+
     display:none;
+
 }
 
 .back-btn{
-    background:#272727;
+
+    margin-bottom:22px;
+
     border:none;
+
+    padding:13px 18px;
+
+    border-radius:18px;
+
     color:white;
-    padding:10px 18px;
-    border-radius:30px;
+
     cursor:pointer;
-    margin-bottom:20px;
-    transition:0.2s;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
+
+    transition:0.25s;
+
 }
 
 .back-btn:hover{
-    background:#333;
+
+    background:rgba(59,164,255,0.15);
+
 }
 
 .video-player{
+
     width:100%;
+
     aspect-ratio:16/9;
-    background:black;
-    border-radius:18px;
+
     overflow:hidden;
+
+    border-radius:28px;
+
+    background:black;
+
+    box-shadow:
+    0 0 35px rgba(59,164,255,0.18);
+
 }
 
 .video-player iframe{
+
     width:100%;
     height:100%;
+
     border:none;
+
 }
 
 .video-details{
-    margin-top:20px;
+
+    margin-top:24px;
+
+    padding:24px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.06);
+
 }
 
 .video-details h2{
-    font-size:1.4rem;
-    margin-bottom:8px;
+
+    font-size:1.5rem;
+
+    margin-bottom:10px;
+
 }
 
 .video-meta{
-    color:#aaa;
-    font-size:0.9rem;
+
+    color:#8fa9c7;
+
 }
 
-/* HOME */
+/* SCROLLBAR */
 
-.home-page{
-    display:block;
+::-webkit-scrollbar{
+
+    width:8px;
+
 }
 
-.section-title{
-    font-size:1.4rem;
-    margin-bottom:20px;
-}
+::-webkit-scrollbar-thumb{
 
-.video-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:20px;
-}
+    background:#2456a7;
 
-.video-card{
-    cursor:pointer;
-    transition:0.2s;
-}
+    border-radius:20px;
 
-.video-card:hover{
-    transform:translateY(-3px);
-}
-
-.thumbnail{
-    width:100%;
-    aspect-ratio:16/9;
-    background:#222;
-    border-radius:16px;
-    overflow:hidden;
-    position:relative;
-}
-
-.thumbnail iframe{
-    width:100%;
-    height:100%;
-    border:none;
-    pointer-events:none;
-}
-
-.play-icon{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:65px;
-    height:65px;
-    background:rgba(0,0,0,0.7);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.4rem;
-    opacity:0;
-    transition:0.2s;
-}
-
-.video-card:hover .play-icon{
-    opacity:1;
-}
-
-.video-info{
-    margin-top:12px;
-}
-
-.video-title{
-    font-size:1rem;
-    font-weight:600;
-    margin-bottom:6px;
-    line-height:1.4;
-}
-
-.video-category{
-    color:#aaa;
-    font-size:0.85rem;
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
     .sidebar{
-        width:85px;
-    }
 
-    .sidebar h3{
-        display:none;
+        width:85px;
+
     }
 
     .subject-btn{
-        font-size:0.75rem;
+
+        font-size:0.7rem;
+
         text-align:center;
-        padding:12px 5px;
+
+        padding:14px 6px;
+
+    }
+
+    .sidebar-title{
+
+        display:none;
+
     }
 
     .content{
+
         margin-left:85px;
+
         width:calc(100% - 85px);
+
     }
 
 }
 
-@media(max-width:700px){
+@media(max-width:720px){
 
     .header{
+
         flex-wrap:wrap;
+
         height:auto;
-        padding:10px;
-        gap:10px;
+
+        padding:14px;
+
+        gap:14px;
+
     }
 
     .layout{
-        margin-top:120px;
+
+        margin-top:130px;
+
     }
 
     .sidebar{
-        top:120px;
-        width:70px;
-    }
 
-    .content{
-        margin-left:70px;
-        width:calc(100% - 70px);
-        padding:15px;
+        top:130px;
+
     }
 
     .search-box{
+
         order:3;
+
         width:100%;
+
         max-width:none;
+
         margin:0;
+
     }
 
     .video-grid{
+
         grid-template-columns:1fr;
+
     }
 
 }
@@ -356,18 +692,32 @@ body{
 <div class="header">
 
     <div class="logo">
-        <i class="fab fa-youtube"></i>
-        Zuhara Classes
+
+        <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+
+        Zuhara Tuition Center
+
     </div>
 
     <div class="search-box">
-        <input type="text" id="searchInput"
-        placeholder="Search videos...">
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search classes...">
+
         <i class="fas fa-search"></i>
+
     </div>
 
-    <a href="logout.html" class="logout-btn">
+    <a href="logout.html"
+    class="logout-btn">
+
+        <i class="fas fa-sign-out-alt"></i>
         Logout
+
     </a>
 
 </div>
@@ -378,7 +728,9 @@ body{
 
     <div class="sidebar">
 
-        <h3>Subjects</h3>
+        <div class="sidebar-title">
+            Subjects
+        </div>
 
         <div id="subjectList"></div>
 
@@ -390,11 +742,11 @@ body{
 
         <!-- HOME -->
 
-        <div class="home-page" id="homePage">
+        <div id="homePage">
 
-            <h2 class="section-title">
-                Recommended Classes
-            </h2>
+            <div class="section-title">
+                Recorded Classes
+            </div>
 
             <div class="video-grid"
             id="videoGrid"></div>
@@ -410,7 +762,7 @@ body{
             onclick="goBack()">
 
                 <i class="fas fa-arrow-left"></i>
-                Back
+                Back to Classes
 
             </button>
 
@@ -441,11 +793,12 @@ body{
 
 <script>
 
-// AUTH CHECK
+// AUTH
 
 function checkAuthentication(){
 
-    const cookies = document.cookie.split(';');
+    const cookies =
+    document.cookie.split(';');
 
     for(let cookie of cookies){
 
@@ -459,7 +812,8 @@ function checkAuthentication(){
 
     }
 
-    window.location.href = 'index.html';
+    window.location.href =
+    'index.html';
 
 }
 
@@ -468,9 +822,10 @@ checkAuthentication();
 // DATA
 
 let videos = [];
+
 let currentCategory = 'All';
 
-// LOAD VIDEOS
+// LOAD
 
 async function loadVideos(){
 
@@ -491,11 +846,13 @@ async function loadVideos(){
 
             line = line.trim();
 
-            if(!line || line.startsWith('#')){
+            if(!line ||
+            line.startsWith('#')){
                 return;
             }
 
-            const parts = line.split('|');
+            const parts =
+            line.split('|');
 
             let url =
             parts[0]?.trim() || '';
@@ -506,7 +863,7 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            // Convert URLs
+            // CONVERT URL
 
             if(url.includes('watch?v=')){
 
@@ -538,52 +895,65 @@ async function loadVideos(){
         });
 
         renderSubjects();
+
         renderVideos();
 
     }
     catch(error){
 
-        document.getElementById('videoGrid')
+        document
+        .getElementById('videoGrid')
         .innerHTML =
-        '<h3>Could not load videos</h3>';
+        '<h2>Could not load videos</h2>';
 
     }
 
 }
 
-// RENDER SUBJECTS
+// SUBJECTS
 
 function renderSubjects(){
 
-    const subjects =
-    ['All', ...new Set(
-        videos.map(v=>v.category)
-    )];
+    const subjects = [
+
+        'All',
+
+        ...new Set(
+            videos.map(v=>v.category)
+        )
+
+    ];
 
     const container =
-    document.getElementById('subjectList');
+    document
+    .getElementById('subjectList');
 
     container.innerHTML = '';
 
     subjects.forEach(subject=>{
 
         const btn =
-        document.createElement('button');
+        document
+        .createElement('button');
 
         btn.className =
         'subject-btn';
 
         if(subject === currentCategory){
+
             btn.classList.add('active');
+
         }
 
-        btn.innerHTML =
-        `<i class="fas fa-book"></i>
-        ${subject}`;
+        btn.innerHTML = `
+            <i class="fas fa-book"></i>
+            ${subject}
+        `;
 
         btn.onclick = ()=>{
 
-            currentCategory = subject;
+            currentCategory =
+            subject;
 
             document
             .querySelectorAll('.subject-btn')
@@ -603,28 +973,37 @@ function renderSubjects(){
 
 }
 
-// RENDER VIDEOS
+// VIDEOS
 
 function renderVideos(){
 
     const grid =
-    document.getElementById('videoGrid');
+    document
+    .getElementById('videoGrid');
 
     const search =
-    document.getElementById('searchInput')
-    .value.toLowerCase();
+    document
+    .getElementById('searchInput')
+    .value
+    .toLowerCase();
 
     grid.innerHTML = '';
 
-    let filtered =
+    const filtered =
     videos.filter(video=>{
 
         const matchCategory =
+
         currentCategory === 'All'
-        || video.category === currentCategory;
+
+        ||
+
+        video.category === currentCategory;
 
         const matchSearch =
-        video.title.toLowerCase()
+
+        video.title
+        .toLowerCase()
         .includes(search);
 
         return matchCategory
@@ -635,7 +1014,8 @@ function renderVideos(){
     filtered.forEach(video=>{
 
         const card =
-        document.createElement('div');
+        document
+        .createElement('div');
 
         card.className =
         'video-card';
@@ -651,7 +1031,7 @@ function renderVideos(){
                 src="${video.url}">
                 </iframe>
 
-                <div class="play-icon">
+                <div class="play-btn">
                     <i class="fas fa-play"></i>
                 </div>
 
@@ -681,20 +1061,28 @@ function renderVideos(){
 
 function playVideo(video){
 
-    document.getElementById('homePage')
+    document
+    .getElementById('homePage')
     .style.display = 'none';
 
-    document.getElementById('playerPage')
+    document
+    .getElementById('playerPage')
     .style.display = 'block';
 
-    document.getElementById('videoFrame')
-    .src = video.url + '?autoplay=1';
+    document
+    .getElementById('videoFrame')
+    .src =
+    video.url + '?autoplay=1';
 
-    document.getElementById('videoTitle')
-    .innerText = video.title;
+    document
+    .getElementById('videoTitle')
+    .innerText =
+    video.title;
 
-    document.getElementById('videoMeta')
-    .innerText = video.category;
+    document
+    .getElementById('videoMeta')
+    .innerText =
+    video.category;
 
     window.scrollTo({
         top:0,
@@ -707,13 +1095,16 @@ function playVideo(video){
 
 function goBack(){
 
-    document.getElementById('playerPage')
+    document
+    .getElementById('playerPage')
     .style.display = 'none';
 
-    document.getElementById('homePage')
+    document
+    .getElementById('homePage')
     .style.display = 'block';
 
-    document.getElementById('videoFrame')
+    document
+    .getElementById('videoFrame')
     .src = '';
 
 }
@@ -722,8 +1113,10 @@ function goBack(){
 
 document
 .getElementById('searchInput')
-.addEventListener('input',
-renderVideos);
+.addEventListener(
+'input',
+renderVideos
+);
 
 // START
 
