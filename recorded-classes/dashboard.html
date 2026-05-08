@@ -302,7 +302,7 @@ let videos = [];
 let currentClass = "All";
 let currentSubject = "All";
 
-/* ================= CLEAN VALUE ================= */
+/* ================= CLEAN FUNCTION ================= */
 function clean(value){
     return (value || "")
         .toString()
@@ -343,7 +343,7 @@ async function loadVideos(){
     renderVideos();
 }
 
-/* ================= FILTERS ================= */
+/* ================= FILTER SETUP ================= */
 function setupFilters(){
 
     const classFilter = document.getElementById("classFilter");
@@ -354,16 +354,15 @@ function setupFilters(){
 
     videos.forEach(v => {
 
-        if(v.className && !/^\d+$/.test(v.className)){
-            classSet.add(v.className);
-        }
+        const cls = clean(v.className);
+        const sub = clean(v.subject);
 
-        if(v.subject){
-            subjectSet.add(v.subject);
-        }
+        if(cls) classSet.add(cls);
+        if(sub) subjectSet.add(sub);
     });
 
-    const classes = ["All", ...Array.from(classSet).sort()];
+    // IMPORTANT: normalize + sort properly
+    const classes = ["All", ...Array.from(classSet).sort((a,b) => Number(a) - Number(b))];
     const subjects = ["All", ...Array.from(subjectSet).sort()];
 
     classFilter.innerHTML = classes
@@ -385,7 +384,7 @@ function setupFilters(){
     };
 }
 
-/* ================= RENDER ================= */
+/* ================= RENDER VIDEOS ================= */
 function renderVideos(){
 
     const grid = document.getElementById("videoGrid");
@@ -429,9 +428,7 @@ function renderVideos(){
         card.innerHTML = `
             <div class="thumbnail">
                 <img src="${thumb}">
-                <div class="play">
-                    <i class="fas fa-play"></i>
-                </div>
+                <div class="play"><i class="fas fa-play"></i></div>
             </div>
 
             <div class="video-info">
@@ -450,7 +447,7 @@ function renderVideos(){
     });
 }
 
-/* ================= PLAY ================= */
+/* ================= PLAY VIDEO ================= */
 function playVideo(video){
 
     document.getElementById("homePage").style.display = "none";
@@ -476,6 +473,6 @@ document.getElementById("searchInput")
 loadVideos();
 
 </script>
-
+    
 </body>
 </html>
