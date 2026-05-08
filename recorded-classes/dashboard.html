@@ -5,16 +5,13 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Zuhara Tuition Center</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -27,24 +24,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 :root{
 
     --bg:#f4f7fb;
-
     --card:#ffffff;
-
-    --border:#e6edf7;
-
+    --border:#e5edf8;
     --text:#111827;
-
     --muted:#6b7280;
 
     --blue:#4f8cff;
-
     --blue2:#2563eb;
 
     --shadow:
     0 10px 40px rgba(15,23,42,0.08);
 
     --shadow2:
-    0 20px 50px rgba(37,99,235,0.12);
+    0 20px 50px rgba(37,99,235,0.15);
 }
 
 body{
@@ -53,11 +45,11 @@ body{
 
     background:
     radial-gradient(circle at top left,
-    rgba(79,140,255,0.12),
+    rgba(79,140,255,0.10),
     transparent 25%),
 
     radial-gradient(circle at bottom right,
-    rgba(37,99,235,0.10),
+    rgba(37,99,235,0.08),
     transparent 25%),
 
     var(--bg);
@@ -116,8 +108,8 @@ body{
 
 .logo-icon{
 
-    width:50px;
-    height:50px;
+    width:52px;
+    height:52px;
 
     border-radius:18px;
 
@@ -137,7 +129,7 @@ body{
     font-size:1.2rem;
 
     box-shadow:
-    0 10px 30px rgba(59,130,246,0.25);
+    0 10px 30px rgba(37,99,235,0.25);
 }
 
 .search-box{
@@ -146,7 +138,7 @@ body{
 
     max-width:540px;
 
-    margin:0 30px;
+    margin:0 28px;
 
     position:relative;
 }
@@ -165,11 +157,9 @@ body{
 
     background:white;
 
-    color:var(--text);
-
     font-size:0.95rem;
 
-    transition:0.25s;
+    color:var(--text);
 
     box-shadow:
     0 5px 20px rgba(15,23,42,0.04);
@@ -180,7 +170,7 @@ body{
     border-color:var(--blue);
 
     box-shadow:
-    0 0 0 4px rgba(59,130,246,0.12);
+    0 0 0 4px rgba(79,140,255,0.12);
 }
 
 .search-box i{
@@ -323,7 +313,7 @@ body{
     color:white;
 
     box-shadow:
-    0 10px 30px rgba(59,130,246,0.20);
+    0 10px 30px rgba(37,99,235,0.20);
 }
 
 /* CONTENT */
@@ -390,9 +380,9 @@ body{
 
     aspect-ratio:16/9;
 
-    overflow:hidden;
-
     position:relative;
+
+    overflow:hidden;
 
     background:#dbeafe;
 }
@@ -456,8 +446,6 @@ body{
     justify-content:center;
 
     font-size:1.4rem;
-
-    transition:0.25s;
 }
 
 .video-info{
@@ -671,6 +659,7 @@ body{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -750,8 +739,8 @@ body{
                 <iframe
                 id="videoFrame"
                 allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="autoplay; encrypted-media">
+                allow="autoplay; encrypted-media"
+                referrerpolicy="strict-origin-when-cross-origin">
                 </iframe>
 
                 <div class="video-watermark">
@@ -830,11 +819,7 @@ async function loadVideos(){
 
             line = line.trim();
 
-            if(
-                !line
-                ||
-                line.startsWith('#')
-            ){
+            if(!line || line.startsWith('#')){
                 return;
             }
 
@@ -850,34 +835,32 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            let thumbnail = '';
+            let videoId = '';
 
             if(url.includes('watch?v=')){
 
-                const id =
+                videoId =
                 new URL(url)
                 .searchParams.get('v');
-
-                thumbnail =
-                `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-
-                url =
-                `https://www.youtube-nocookie.com/embed/${id}`;
             }
 
-            if(url.includes('youtu.be/')){
+            else if(url.includes('youtu.be/')){
 
-                const id =
+                videoId =
                 url
                 .split('youtu.be/')[1]
                 .split('?')[0];
-
-                thumbnail =
-                `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-
-                url =
-                `https://www.youtube-nocookie.com/embed/${id}`;
             }
+
+            if(!videoId){
+                return;
+            }
+
+            const thumbnail =
+            `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+            url =
+            `https://www.youtube-nocookie.com/embed/${videoId}`;
 
             videos.push({
                 url,
@@ -914,16 +897,14 @@ function renderSubjects(){
     ];
 
     const container =
-    document
-    .getElementById('subjectList');
+    document.getElementById('subjectList');
 
     container.innerHTML = '';
 
     subjects.forEach(subject=>{
 
         const btn =
-        document
-        .createElement('button');
+        document.createElement('button');
 
         btn.className =
         'subject-btn';
@@ -961,8 +942,7 @@ function renderSubjects(){
 function renderVideos(){
 
     const grid =
-    document
-    .getElementById('videoGrid');
+    document.getElementById('videoGrid');
 
     const search =
     document
@@ -995,8 +975,7 @@ function renderVideos(){
     filtered.forEach(video=>{
 
         const card =
-        document
-        .createElement('div');
+        document.createElement('div');
 
         card.className =
         'video-card';
@@ -1006,35 +985,31 @@ function renderVideos(){
 
         card.innerHTML = `
 
-            <div class="thumbnail">
+        <div class="thumbnail">
 
-                <img
-                src="${video.thumbnail}"
-                alt="${video.title}"
-                loading="lazy"
-                draggable="false"
-                onerror="
-                this.onerror=null;
-                this.src='https://i.imgur.com/8Km9tLL.png';
-                ">
+            <img
+            src="${video.thumbnail}"
+            alt="${video.title}"
+            loading="lazy"
+            draggable="false">
 
-                <div class="play-btn">
-                    <i class="fas fa-play"></i>
-                </div>
-
+            <div class="play-btn">
+                <i class="fas fa-play"></i>
             </div>
 
-            <div class="video-info">
+        </div>
 
-                <div class="video-title">
-                    ${video.title}
-                </div>
+        <div class="video-info">
 
-                <div class="video-category">
-                    ${video.category}
-                </div>
-
+            <div class="video-title">
+                ${video.title}
             </div>
+
+            <div class="video-category">
+                ${video.category}
+            </div>
+
+        </div>
         `;
 
         grid.appendChild(card);
@@ -1069,9 +1044,7 @@ function playVideo(video){
 
     '&playsinline=1' +
 
-    '&iv_load_policy=3' +
-
-    '&cc_load_policy=0';
+    '&iv_load_policy=3';
 
     document
     .getElementById('videoFrame')
@@ -1125,33 +1098,6 @@ document.addEventListener(
 'contextmenu',
 e=>e.preventDefault()
 );
-
-document.addEventListener(
-'keydown',
-e=>{
-
-    if(e.key === 'F12'){
-        e.preventDefault();
-    }
-
-    if(
-        e.ctrlKey
-        &&
-        e.shiftKey
-        &&
-        e.key.toLowerCase() === 'i'
-    ){
-        e.preventDefault();
-    }
-
-    if(
-        e.ctrlKey
-        &&
-        e.key.toLowerCase() === 'u'
-    ){
-        e.preventDefault();
-    }
-});
 
 loadVideos();
 
