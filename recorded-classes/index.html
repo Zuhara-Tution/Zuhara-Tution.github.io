@@ -165,7 +165,7 @@
         
         <div class="checkbox-group">
             <input type="checkbox" id="rememberMe">
-            <label for="rememberMe">Remember me for 30 days</label>
+            <label for="rememberMe">Remember me for 30 days (Students only)</label>
         </div>
         
         <button onclick="verifyAccess()">
@@ -190,7 +190,7 @@
         // Admin secret key
         const ADMIN_SECRET = "zuhara@admin";
         
-        function setAuthCookie(rememberMe) {
+        function setStudentCookie(rememberMe) {
             let expiryDate = new Date();
             if (rememberMe) {
                 expiryDate.setDate(expiryDate.getDate() + 30);
@@ -200,25 +200,22 @@
             document.cookie = `zuhara_auth=authenticated; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
         }
         
-        function setAdminSession() {
-            sessionStorage.setItem('adminAuthenticated', 'true');
-        }
-        
         function verifyAccess() {
             const enteredCode = document.getElementById('accessCode').value.trim();
             const rememberMe = document.getElementById('rememberMe').checked;
             const errorDiv = document.getElementById('errorMsg');
             
-            // Check for admin access first
+            // Check for admin access - NO COOKIE, only sessionStorage
             if (enteredCode === ADMIN_SECRET) {
-                setAdminSession();
+                // Admin uses ONLY sessionStorage (clears when tab closes)
+                sessionStorage.setItem('adminAuthenticated', 'true');
                 window.location.href = 'admin.html';
                 return;
             }
             
-            // Check for student access
+            // Check for student access - uses cookie for persistence
             if (enteredCode === STUDENT_PASSWORD) {
-                setAuthCookie(rememberMe);
+                setStudentCookie(rememberMe);
                 window.location.href = 'dashboard.html';
                 return;
             }
@@ -236,12 +233,12 @@
             }
         });
         
-        // Check if already logged in as admin
+        // Check for existing admin session (sessionStorage only - NO COOKIE)
         if (sessionStorage.getItem('adminAuthenticated') === 'true') {
             window.location.href = 'admin.html';
         }
         
-        // Check if already logged in as student
+        // Check for existing student session (cookie only)
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
             const [name, value] = cookie.trim().split('=');
