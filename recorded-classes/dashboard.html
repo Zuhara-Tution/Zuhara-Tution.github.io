@@ -296,79 +296,85 @@ select{
 
 </div>
 
-<script>
 
 let videos = [];
 let currentClass = "All";
 let currentSubject = "All";
 
-/* ================= LOAD DATA ================= */
+/* ================= NORMALIZER ================= */
+function normalize(value){
+    return value
+        ?.toString()
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+}
+
+/* ================= LOAD VIDEOS ================= */
 async function loadVideos(){
 
     const res = await fetch("links.txt");
     const text = await res.text();
 
-    videos = text.split("\n")
-    .map(line => line.trim())
-    .filter(line => line && !line.startsWith("#"))
-    .map(line => {
+    videos = text
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line && !line.startsWith("#"))
+        .map(line => {
 
-        const parts = line.split("|");
+            const parts = line.split("|");
 
-        return {
-            url: parts[0]?.trim(),
-            title: parts[1]?.trim(),
-            className: parts[2]?.trim(),
-            subject: parts[3]?.trim()
-        };
-    })
-    .filter(v =>
-        v.url &&
-        v.title &&
-        v.className &&
-        v.subject
-    );
+            return {
+                url: parts[0]?.trim(),
+                title: parts[1]?.trim(),
+                className: parts[2]?.trim(),
+                subject: parts[3]?.trim()
+            };
+        })
+        .filter(v =>
+            v.url &&
+            v.title &&
+            v.className &&
+            v.subject
+        );
 
     setupFilters();
     renderVideos();
 }
 
-/* ================= CLEAN FILTERS ================= */
-function clean(value){
-    return value?.toString().trim();
-}
-
-function isValid(value){
-    return value &&
-           value !== "" &&
-           !/^\d+$/.test(value); // remove pure numbers
-}
-
+/* ================= FILTER SETUP ================= */
 function setupFilters(){
 
     const classFilter = document.getElementById("classFilter");
     const subjectFilter = document.getElementById("subjectFilter");
 
-    let classes = new Set();
-    let subjects = new Set();
+    let classSet = new Set();
+    let subjectSet = new Set();
 
     videos.forEach(v => {
 
-        const cls = clean(v.className);
-        const sub = clean(v.subject);
+        const cls = v.className?.trim();
+        const sub = v.subject?.trim();
 
-        if(isValid(cls)) classes.add(cls);
-        if(isValid(sub)) subjects.add(sub);
+        if(cls && !/^\d+$/.test(cls)) {
+            classSet.add(cls);
+        }
+
+        if(sub) {
+            subjectSet.add(sub);
+        }
     });
 
-    classes = ["All", ...Array.from(classes).sort()];
-    subjects = ["All", ...Array.from(subjects).sort()];
+    const classes = ["All", ...Array.from(classSet).sort()];
+    const subjects = ["All", ...Array.from(subjectSet).sort()];
 
-    classFilter.innerHTML =
-        classes.map(c => `<option value="${c}">${c}</option>`).join("");
+    classFilter.innerHTML = classes
+        .map(c => `<option value="${c}">${c}</option>`)
+        .join("");
 
-    subjectFilter.innerHTML =
-        subjects.map(s => `<option value="${s}">${s}</option>`).join("");
+    subjectFilter.innerHTML = subjects
+        .map(s => `<option value="${s}">${s}</option>`)
+        .join("");
 
     classFilter.onchange = () => {
         currentClass = classFilter.value;
@@ -381,7 +387,7 @@ function setupFilters(){
     };
 }
 
-/* ================= RENDER ================= */
+/* ================= RENDER VIDEOS ================= */
 function renderVideos(){
 
     const grid = document.getElementById("videoGrid");
@@ -389,17 +395,28 @@ function renderVideos(){
 
     const filtered = videos.filter(v => {
 
-        return (
-            (currentClass === "All" || v.className === currentClass) &&
-            (currentSubject === "All" || v.subject === currentSubject) &&
-            v.title.toLowerCase().includes(search)
-        );
+        const matchClass =
+            currentClass === "All" ||
+            normalize(v.className) === normalize(currentClass);
+
+        const matchSubject =
+            currentSubject === "All" ||
+            normalize(v.subject) === normalize(currentSubject);
+
+        const matchSearch =
+            v.title.toLowerCase().includes(search);
+
+        return matchClass && matchSubject && matchSearch;
     });
 
     grid.innerHTML = "";
 
     if(filtered.length === 0){
-        grid.innerHTML = "<p>No videos found</p>";
+        grid.innerHTML = `
+            <div style="background:white;padding:20px;border-radius:12px;">
+                No videos found
+            </div>
+        `;
         return;
     }
 
@@ -414,11 +431,14 @@ function renderVideos(){
         card.innerHTML = `
             <div class="thumbnail">
                 <img src="${thumb}">
-                <div class="play"><i class="fas fa-play"></i></div>
+                <div class="play">
+                    <i class="fas fa-play"></i>
+                </div>
             </div>
 
             <div class="video-info">
                 <div class="video-title">${video.title}</div>
+
                 <div class="tags">
                     <div class="tag">${video.className}</div>
                     <div class="tag">${video.subject}</div>
@@ -426,29 +446,37 @@ function renderVideos(){
             </div>
         `;
 
-        card.onclick = () => {
-            document.getElementById("homePage").style.display = "none";
-            document.getElementById("playerPage").style.display = "block";
-            document.getElementById("videoFrame").src = video.url + "?autoplay=1";
-        };
+        card.onclick = () => playVideo(video);
 
         grid.appendChild(card);
     });
 }
 
+/* ================= PLAY VIDEO ================= */
+function playVideo(video){
+
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("playerPage").style.display = "block";
+
+    document.getElementById("videoFrame").src = video.url + "?autoplay=1";
+}
+
 /* ================= BACK ================= */
 function goBack(){
+
     document.getElementById("playerPage").style.display = "none";
     document.getElementById("homePage").style.display = "block";
+
     document.getElementById("videoFrame").src = "";
 }
 
-/* ================= EVENTS ================= */
-document.getElementById("searchInput").addEventListener("input", renderVideos);
+/* ================= SEARCH ================= */
+document.getElementById("searchInput")
+.addEventListener("input", renderVideos);
 
+/* ================= INIT ================= */
 loadVideos();
 
-</script>
 
 </body>
 </html>
