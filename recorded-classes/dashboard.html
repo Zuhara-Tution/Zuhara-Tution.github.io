@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0"/>
@@ -26,17 +25,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 
 :root{
 
-    --bg:#f4f8fd;
+    --bg:#f4f7fb;
 
     --card:#ffffff;
 
-    --border:#e4edf8;
+    --card2:#f8fbff;
 
-    --text:#172033;
+    --border:#e3ebf5;
 
-    --muted:#6d7b95;
+    --text:#162033;
 
-    --blue:#4f8cff;
+    --muted:#6c7a92;
+
+    --blue:#3b82f6;
 
     --blue2:#2563eb;
 
@@ -44,7 +45,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     0 10px 40px rgba(15,23,42,0.08);
 
     --shadow2:
-    0 25px 60px rgba(37,99,235,0.14);
+    0 20px 50px rgba(59,130,246,0.10);
 }
 
 body{
@@ -53,7 +54,7 @@ body{
 
     background:
     radial-gradient(circle at top left,
-    rgba(79,140,255,0.08),
+    rgba(59,130,246,0.08),
     transparent 25%),
 
     radial-gradient(circle at bottom right,
@@ -67,8 +68,6 @@ body{
     min-height:100vh;
 
     overflow-x:hidden;
-
-    user-select:none;
 }
 
 /* HEADER */
@@ -85,9 +84,9 @@ body{
     height:82px;
 
     background:
-    rgba(255,255,255,0.85);
+    rgba(255,255,255,0.82);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(18px);
 
     border-bottom:
     1px solid var(--border);
@@ -118,8 +117,8 @@ body{
 
 .logo-icon{
 
-    width:52px;
-    height:52px;
+    width:50px;
+    height:50px;
 
     border-radius:18px;
 
@@ -139,16 +138,16 @@ body{
     font-size:1.2rem;
 
     box-shadow:
-    0 10px 30px rgba(37,99,235,0.25);
+    0 10px 30px rgba(59,130,246,0.25);
 }
 
 .search-box{
 
     flex:1;
 
-    max-width:520px;
+    max-width:540px;
 
-    margin:0 28px;
+    margin:0 30px;
 
     position:relative;
 }
@@ -167,9 +166,11 @@ body{
 
     background:white;
 
+    color:var(--text);
+
     font-size:0.95rem;
 
-    color:var(--text);
+    transition:0.25s;
 
     box-shadow:
     0 5px 20px rgba(15,23,42,0.04);
@@ -180,7 +181,7 @@ body{
     border-color:var(--blue);
 
     box-shadow:
-    0 0 0 4px rgba(79,140,255,0.12);
+    0 0 0 4px rgba(59,130,246,0.12);
 }
 
 .search-box i{
@@ -210,9 +211,12 @@ body{
 
     border:1px solid var(--border);
 
+    transition:0.25s;
+
     font-weight:600;
 
-    transition:0.25s;
+    box-shadow:
+    0 5px 20px rgba(15,23,42,0.04);
 }
 
 .logout-btn:hover{
@@ -245,7 +249,7 @@ body{
     height:calc(100vh - 82px);
 
     background:
-    rgba(255,255,255,0.72);
+    rgba(255,255,255,0.75);
 
     backdrop-filter:blur(18px);
 
@@ -320,7 +324,7 @@ body{
     color:white;
 
     box-shadow:
-    0 10px 30px rgba(37,99,235,0.20);
+    0 10px 30px rgba(59,130,246,0.20);
 }
 
 /* CONTENT */
@@ -391,24 +395,17 @@ body{
 
     position:relative;
 
-    background:#dbeafe;
+    background:#000;
 }
 
-.thumbnail img{
+.thumbnail iframe{
 
     width:100%;
     height:100%;
 
-    object-fit:cover;
+    border:none;
 
-    display:block;
-
-    transition:0.35s;
-}
-
-.video-card:hover .thumbnail img{
-
-    transform:scale(1.05);
+    pointer-events:none;
 }
 
 .thumbnail::after{
@@ -421,7 +418,7 @@ body{
 
     background:
     linear-gradient(to top,
-    rgba(0,0,0,0.38),
+    rgba(0,0,0,0.35),
     transparent);
 }
 
@@ -440,7 +437,7 @@ body{
     border-radius:50%;
 
     background:
-    rgba(255,255,255,0.20);
+    rgba(255,255,255,0.18);
 
     backdrop-filter:blur(12px);
 
@@ -571,21 +568,6 @@ body{
     z-index:20;
 }
 
-.video-block{
-
-    position:absolute;
-
-    top:0;
-    right:0;
-
-    width:160px;
-    height:60px;
-
-    z-index:9999;
-
-    background:transparent;
-}
-
 .video-details{
 
     margin-top:28px;
@@ -611,6 +593,20 @@ body{
 .video-meta{
 
     color:var(--muted);
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#c4d5f0;
+
+    border-radius:20px;
 }
 
 /* MOBILE */
@@ -690,10 +686,11 @@ body{
 }
 
 </style>
-
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <div class="header">
 
@@ -718,9 +715,8 @@ body{
 
     </div>
 
-    <a href="./index.html"
-    class="logout-btn"
-    onclick="logout()">
+    <a href="logout.html"
+    class="logout-btn">
 
         <i class="fas fa-sign-out-alt"></i>
         Logout
@@ -730,6 +726,8 @@ body{
 </div>
 
 <div class="layout">
+
+    <!-- SIDEBAR -->
 
     <div class="sidebar">
 
@@ -741,7 +739,11 @@ body{
 
     </div>
 
+    <!-- CONTENT -->
+
     <div class="content">
+
+        <!-- HOME -->
 
         <div id="homePage">
 
@@ -753,6 +755,8 @@ body{
             id="videoGrid"></div>
 
         </div>
+
+        <!-- PLAYER -->
 
         <div class="player-page"
         id="playerPage">
@@ -770,12 +774,10 @@ body{
                 <iframe
                 id="videoFrame"
                 allowfullscreen
-                allow="autoplay; encrypted-media"
                 referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; encrypted-media"
                 sandbox="allow-scripts allow-same-origin allow-presentation">
                 </iframe>
-
-                <div class="video-block"></div>
 
                 <div class="video-watermark">
                     Zuhara Tuition Center
@@ -804,30 +806,25 @@ body{
 
 function checkAuthentication(){
 
-    const authCookie =
-    document.cookie
-    .split(';')
-    .find(cookie=>
-        cookie.trim()
-        .startsWith('zuhara_auth=')
-    );
+    const cookies =
+    document.cookie.split(';');
 
-    if(!authCookie){
+    for(let cookie of cookies){
 
-        window.location.href =
-        './index.html';
+        const [name,value] =
+        cookie.trim().split('=');
 
-        return;
+        if(
+            name === 'zuhara_auth'
+            &&
+            value === 'authenticated'
+        ){
+            return true;
+        }
     }
 
-    const value =
-    authCookie.split('=')[1];
-
-    if(value !== 'authenticated'){
-
-        window.location.href =
-        './index.html';
-    }
+    window.location.href =
+    'index.html';
 }
 
 checkAuthentication();
@@ -845,7 +842,7 @@ async function loadVideos(){
     try{
 
         const response =
-        await fetch('./links.txt');
+        await fetch('links.txt');
 
         const text =
         await response.text();
@@ -859,7 +856,11 @@ async function loadVideos(){
 
             line = line.trim();
 
-            if(!line || line.startsWith('#')){
+            if(
+                !line
+                ||
+                line.startsWith('#')
+            ){
                 return;
             }
 
@@ -875,38 +876,33 @@ async function loadVideos(){
             const category =
             parts[2]?.trim() || 'General';
 
-            let videoId = '';
+            // WATCH URL
 
             if(url.includes('watch?v=')){
 
-                videoId =
+                const id =
                 new URL(url)
                 .searchParams.get('v');
+
+                url =
+                `https://www.youtube-nocookie.com/embed/${id}`;
             }
 
-            else if(url.includes('youtu.be/')){
+            // SHORT URL
 
-                videoId =
-                url
-                .split('youtu.be/')[1]
-                .split('?')[0];
+            if(url.includes('youtu.be/')){
+
+                const id =
+                url.split('youtu.be/')[1];
+
+                url =
+                `https://www.youtube-nocookie.com/embed/${id}`;
             }
-
-            if(!videoId){
-                return;
-            }
-
-            const thumbnail =
-            `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-            url =
-            `https://www.youtube-nocookie.com/embed/${videoId}`;
 
             videos.push({
                 url,
                 title,
-                category,
-                thumbnail
+                category
             });
 
         });
@@ -939,14 +935,16 @@ function renderSubjects(){
     ];
 
     const container =
-    document.getElementById('subjectList');
+    document
+    .getElementById('subjectList');
 
     container.innerHTML = '';
 
     subjects.forEach(subject=>{
 
         const btn =
-        document.createElement('button');
+        document
+        .createElement('button');
 
         btn.className =
         'subject-btn';
@@ -981,12 +979,13 @@ function renderSubjects(){
     });
 }
 
-// VIDEOS
+// RENDER VIDEOS
 
 function renderVideos(){
 
     const grid =
-    document.getElementById('videoGrid');
+    document
+    .getElementById('videoGrid');
 
     const search =
     document
@@ -1019,7 +1018,8 @@ function renderVideos(){
     filtered.forEach(video=>{
 
         const card =
-        document.createElement('div');
+        document
+        .createElement('div');
 
         card.className =
         'video-card';
@@ -1031,15 +1031,9 @@ function renderVideos(){
 
             <div class="thumbnail">
 
-                <img
-                src="${video.thumbnail}"
-                alt="${video.title}"
-                loading="lazy"
-                draggable="false"
-
-                onerror="
-                this.src='https://img.youtube.com/vi/${getVideoId(video.url)}/hqdefault.jpg'
-                ">
+                <iframe
+                src="${video.url}">
+                </iframe>
 
                 <div class="play-btn">
                     <i class="fas fa-play"></i>
@@ -1062,16 +1056,6 @@ function renderVideos(){
 
         grid.appendChild(card);
     });
-}
-
-// GET VIDEO ID
-
-function getVideoId(url){
-
-    const match =
-    url.match(/embed\/([^?]+)/);
-
-    return match ? match[1] : '';
 }
 
 // PLAY VIDEO
@@ -1102,9 +1086,11 @@ function playVideo(video){
 
     '&fs=0' +
 
+    '&iv_load_policy=3' +
+
     '&playsinline=1' +
 
-    '&iv_load_policy=3';
+    '&cc_load_policy=0';
 
     document
     .getElementById('videoFrame')
@@ -1143,17 +1129,6 @@ function goBack(){
     .src = '';
 }
 
-// LOGOUT
-
-function logout(){
-
-    document.cookie =
-    'zuhara_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-    window.location.href =
-    './index.html';
-}
-
 // SEARCH
 
 document
@@ -1167,10 +1142,11 @@ renderVideos
 
 document.addEventListener(
 'contextmenu',
-e=>e.preventDefault()
-);
+e=>{
+    e.preventDefault();
+});
 
-// BLOCK SHORTCUTS
+// DISABLE SHORTCUTS
 
 document.addEventListener(
 'keydown',
@@ -1181,28 +1157,23 @@ e=>{
     }
 
     if(
-        e.ctrlKey &&
-        ['u','s','p','i','j'].includes(
-            e.key.toLowerCase()
-        )
+        e.ctrlKey
+        &&
+        e.key.toLowerCase() === 'u'
     ){
         e.preventDefault();
     }
 
     if(
-        e.ctrlKey &&
+        e.ctrlKey
+        &&
         e.shiftKey
+        &&
+        e.key.toLowerCase() === 'i'
     ){
         e.preventDefault();
     }
 });
-
-// BLOCK DRAG
-
-document.addEventListener(
-'dragstart',
-e=>e.preventDefault()
-);
 
 // START
 
