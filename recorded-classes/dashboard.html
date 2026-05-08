@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0"/>
@@ -26,19 +26,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 :root{
 
     --bg:#f4f7fb;
-
     --card:#ffffff;
-
-    --card2:#f8fbff;
-
     --border:#e3ebf5;
-
     --text:#162033;
-
     --muted:#6c7a92;
-
     --blue:#3b82f6;
-
     --blue2:#2563eb;
 
     --shadow:
@@ -171,9 +163,6 @@ body{
     font-size:0.95rem;
 
     transition:0.25s;
-
-    box-shadow:
-    0 5px 20px rgba(15,23,42,0.04);
 }
 
 .search-box input:focus{
@@ -214,9 +203,6 @@ body{
     transition:0.25s;
 
     font-weight:600;
-
-    box-shadow:
-    0 5px 20px rgba(15,23,42,0.04);
 }
 
 .logout-btn:hover{
@@ -322,9 +308,6 @@ body{
     var(--blue2));
 
     color:white;
-
-    box-shadow:
-    0 10px 30px rgba(59,130,246,0.20);
 }
 
 /* CONTENT */
@@ -395,7 +378,7 @@ body{
 
     position:relative;
 
-    background:#000;
+    background:black;
 }
 
 .thumbnail img{
@@ -406,6 +389,20 @@ body{
     object-fit:cover;
 
     display:block;
+}
+
+.thumbnail::after{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(to top,
+    rgba(0,0,0,0.35),
+    transparent);
 }
 
 .play-btn{
@@ -494,15 +491,6 @@ body{
     margin-bottom:24px;
 
     font-weight:600;
-
-    transition:0.25s;
-}
-
-.back-btn:hover{
-
-    background:var(--blue);
-
-    color:white;
 }
 
 .video-player{
@@ -535,7 +523,7 @@ body{
 
     position:absolute;
 
-    bottom:20px;
+    top:20px;
     right:20px;
 
     padding:10px 16px;
@@ -543,15 +531,17 @@ body{
     border-radius:14px;
 
     background:
-    rgba(255,255,255,0.18);
+    rgba(0,0,0,0.45);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(10px);
 
     color:white;
 
     font-size:0.82rem;
 
     z-index:20;
+
+    pointer-events:none;
 }
 
 .video-details{
@@ -736,6 +726,7 @@ body{
                 <iframe
                 id="videoFrame"
                 allowfullscreen
+                loading="lazy"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allow="autoplay; encrypted-media"
                 sandbox="allow-scripts allow-same-origin allow-presentation">
@@ -914,13 +905,7 @@ function renderSubjects(){
             currentCategory =
             subject;
 
-            document
-            .querySelectorAll('.subject-btn')
-            .forEach(b=>
-                b.classList.remove('active')
-            );
-
-            btn.classList.add('active');
+            renderSubjects();
 
             renderVideos();
         };
@@ -979,7 +964,7 @@ function renderVideos(){
         video.url.split('/embed/')[1];
 
         const thumbnail =
-        `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 
         card.innerHTML = `
 
@@ -1028,9 +1013,9 @@ function playVideo(video){
 
     '?autoplay=1' +
 
-    '&modestbranding=1' +
-
     '&rel=0' +
+
+    '&modestbranding=1' +
 
     '&controls=1' +
 
@@ -1038,17 +1023,18 @@ function playVideo(video){
 
     '&fs=0' +
 
-    '&iv_load_policy=3' +
-
     '&playsinline=1' +
+
+    '&iv_load_policy=3' +
 
     '&cc_load_policy=0' +
 
-    '&showinfo=0';
+    '&autohide=1';
 
     document
     .getElementById('videoFrame')
-    .src = secureUrl;
+    .src =
+    secureUrl;
 
     document
     .getElementById('videoTitle')
